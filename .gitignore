@@ -1,0 +1,12 @@
+# IDE #
+.buildpath
+.project
+.settings
+.DS_Store
+
+# Packages #
+*.zip
+
+# Package directories #
+packages
+releases
