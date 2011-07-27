@@ -33,6 +33,7 @@
 			<fileset dir=".">
 				<include name="CHANGELOG" />
 				<include name="index.html" />
+				<include name="script.php" />
 				<include name="yetanothersocial.php" />
 				<include name="yetanothersocial.xml" />
 			</fileset>

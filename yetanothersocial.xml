@@ -9,6 +9,7 @@
 	<version>1.0</version>
 	<license>GNU/GPL Version 2 or later</license>
 	<description>PLG_CONTENT_YETANOTHERSOCIAL_XML_DESCRIPTION</description>
+	<scriptfile>script.php</scriptfile>
 	<config>
 		<fields name="params">
 			<fieldset name="display">
