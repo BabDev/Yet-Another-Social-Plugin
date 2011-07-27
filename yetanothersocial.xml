@@ -160,6 +160,31 @@
 						value="tall">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_GOOGLE_SIZE_OPTION_TALL</option>
 				</field>
 			</fieldset>
+			<fieldset name="twitter">
+				<field
+					name="twitterCount"
+					type="list"
+					default="horizontal"
+					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_TWITTER_COUNT_LABEL"
+					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_TWITTER_COUNT_DESCRIPTION" >
+					<option
+						value="none">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_TWITTER_COUNT_OPTION_NONE</option>
+					<option
+						value="horizontal">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_TWITTER_COUNT_OPTION_HORIZONTAL</option>
+					<option
+						value="vertical">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_TWITTER_COUNT_OPTION_VERTICAL</option>
+				</field>
+				<field
+					name="twitterUser"
+					type="text"
+					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_TWITTER_USER_LABEL"
+					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_TWITTER_USER_DESCRIPTION" />
+				<field
+					name="twitterText"
+					type="text"
+					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_TWITTER_TEXT_LABEL"
+					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_TWITTER_TEXT_DESCRIPTION" />
+			</fieldset>
 		</fields>
 	</config>
     <files>

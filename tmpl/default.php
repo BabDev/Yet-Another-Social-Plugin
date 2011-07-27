@@ -33,14 +33,18 @@ if ($displayGoogle): ?>
 	</div>
 <?php endif; ?>
 <?php // Twitter Share button
-// @TODO: Param for Twitter account, text, count
 if ($displayTwitter): ?>
 	<div class="yetanothersocial-twitter active-<?php echo $count; ?>">
 		<a href="http://twitter.com/share" class="twitter-share-button"
 			data-url="<?php echo $siteURL.$itemURL; ?>"
-			data-count="horizontal"
-			data-via="mbabker"
-			data-text="Check this out -">Tweet</a>
+			data-counturl="<?php echo $siteURL.$itemURL; ?>"
+			data-count="<?php echo $this->params->get('twitterCount', 'horizontal'); ?>"
+			<?php if ($this->params->get('twitterUser', '') != '') : ?>
+			data-via="<?php echo $this->params->get('twitterUser', ''); ?>"
+			<?php endif; ?>
+			<?php if ($this->params->get('twitterText', '') != '') : ?>
+			data-text="<?php echo $this->params->get('twitterText', ''); ?>">Tweet</a>
+			<?php endif; ?>
 	</div>
 <?php endif; ?>
 </div>
