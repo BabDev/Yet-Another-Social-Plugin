@@ -14,7 +14,7 @@ defined('_JEXEC') or die;
 <div class="yetanothersocial-container">
 <?php // Facebook Like button
 if ($displayFacebook): ?>
-	<div class="yetanothersocial-facebook active-<?php echo $count; ?>">
+	<div class="yetanothersocial-facebook">
 		<fb:like href="<?php echo $siteURL.$itemURL; ?>"
 			send="<?php echo $this->params->get('facebookSend', 'true'); ?>"
 			layout="<?php echo $this->params->get('facebookLayout', 'button_count'); ?>"
@@ -26,7 +26,7 @@ if ($displayFacebook): ?>
 <?php endif; ?>
 <?php // Google +1 button
 if ($displayGoogle): ?>
-	<div class="yetanothersocial-google active-<?php echo $count; ?>">
+	<div class="yetanothersocial-google">
 		<g:plusone size="<?php echo $this->params->get('googleSize', 'standard'); ?>"
 			count="<?php echo $this->params->get('googleCount', 'true'); ?>"
 			href="<?php echo $siteURL.$itemURL; ?>"></g:plusone>
@@ -34,17 +34,13 @@ if ($displayGoogle): ?>
 <?php endif; ?>
 <?php // Twitter Share button
 if ($displayTwitter): ?>
-	<div class="yetanothersocial-twitter active-<?php echo $count; ?>">
+	<div class="yetanothersocial-twitter">
 		<a href="http://twitter.com/share" class="twitter-share-button"
 			data-url="<?php echo $siteURL.$itemURL; ?>"
 			data-counturl="<?php echo $siteURL.$itemURL; ?>"
 			data-count="<?php echo $this->params->get('twitterCount', 'horizontal'); ?>"
-			<?php if ($this->params->get('twitterUser', '') != '') : ?>
 			data-via="<?php echo $this->params->get('twitterUser', ''); ?>"
-			<?php endif; ?>
-			<?php if ($this->params->get('twitterText', '') != '') : ?>
 			data-text="<?php echo $this->params->get('twitterText', ''); ?>">Tweet</a>
-			<?php endif; ?>
 	</div>
 <?php endif; ?>
 </div>
