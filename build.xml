@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="yetanothersocial" default="package" basedir=".">
+	<target
+		name="package"
+		description="Builds test packages based on the development head"
+		depends="rebuild-packages,build-temp" >
+		<delete quiet="yes" includeemptydirs="true">
+			<fileset dir=".">
+				<include name="releases/plg_content_yetanothersocial_master.zip" />
+			</fileset>
+		</delete>
+		<echo msg="Build package" />
+		<zip destfile="releases/plg_content_yetanothersocial_master.zip">
+			<fileset dir="packages">
+				<include name="**" />
+			</fileset>
+		</zip>
+	</target>
+	<target name="build-temp" description="Stages the files" depends="rebuild-packages">
+		<echo msg="Create temp folder" />
+		<mkdir dir="packages" />
+		<echo msg="Copy files" />
+		<copy todir="packages/language">
+			<fileset dir="language" />
+		</copy>
+		<copy todir="packages">
+			<fileset dir=".">
+				<include name="CHANGELOG" />
+				<include name="index.html" />
+				<include name="yetanothersocial.php" />
+				<include name="yetanothersocial.xml" />
+			</fileset>
+	    </copy>
+	</target>
+	<target name="rebuild-packages" description="Delete old packages">
+		<echo msg="Deleting packages dir" />
+		<delete quiet="yes" includeemptydirs="true">
+			<fileset dir="*">
+				<include name="packages" />
+			</fileset>
+		</delete>
+		<echo msg="Creating packages dir" />
+		<mkdir dir="packages" />
+	</target>
+</project>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="1.6" type="plugin" group="content" method="upgrade">
+	<name>plg_content_yetanothersocial</name>
+	<creationDate>July 2011</creationDate>
+	<author>Michael Babker</author>
+	<copyright>(C) 2011 Michael Babker</copyright>
+	<authorEmail>mbabker@flbab.com</authorEmail>
+	<authorUrl>http://www.flbab.com</authorUrl>
+	<version>1.0</version>
+	<license>GNU/GPL Version 2 or later</license>
+	<description>PLG_CONTENT_YETANOTHERSOCIAL_XML_DESCRIPTION</description>
+	<config>
+		<fields name="params">
+			<fieldset name="display">
+				<field
+					name="displayFacebook"
+					type="radio"
+					default="1"
+					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_FACEBOOK_LABEL"
+					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_FACEBOOK_DESCRIPTION" >
+					<option
+						value="0">JNO</option>
+					<option
+						value="1">JYES</option>
+				</field>
+				<field
+					name="displayGoogle"
+					type="radio"
+					default="1"
+					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_GOOGLE_LABEL"
+					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_GOOGLE_DESCRIPTION" >
+					<option
+						value="0">JNO</option>
+					<option
+						value="1">JYES</option>
+				</field>
+				<field
+					name="displayTwitter"
+					type="radio"
+					default="1"
+					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_TWITTER_LABEL"
+					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_TWITTER_DESCRIPTION" >
+					<option
+						value="0">JNO</option>
+					<option
+						value="1">JYES</option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+    <files>
+    	<filename plugin="yetanothersocial">yetanothersocial.php</filename>
+    	<filename>index.html</filename>
+    </files>
+	<languages>
+		<language tag="en-GB">language/en-GB/en-GB.plg_content_yetanothersocial.ini</language>
+		<language tag="en-GB">language/en-GB/en-GB.plg_content_yetanothersocial.sys.ini</language>
+    </languages>
+</extension>
