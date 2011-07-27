@@ -59,11 +59,6 @@ class plgContentYetAnotherSocial extends JPlugin {
 			return;
 		}
 
-		// I'm not doing anything useful just yet ;-)
-		return;
-
-		/* CODE BELOW HERE IS NOT EXECUTED CURRENTLY */
-
 		// If we're not in the article view, we have to get the full $article object ourselves
 		if ($view == 'featured' || $view == 'category') {
 			// We only want to handle com_content items; if this function returns null, there's no DB item
