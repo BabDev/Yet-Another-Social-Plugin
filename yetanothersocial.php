@@ -44,6 +44,7 @@ class plgContentYetAnotherSocial extends JPlugin {
 	public function onContentPrepare($context, &$article, &$params, $limitstart)
 	{
 		// Set the parameters
+		$document		= JFactory::getDocument();
 		$displayFacebook	= $this->params->get('displayFacebook', '1');
 		$displayGoogle		= $this->params->get('displayGoogle', '1');
 		$displayTwitter		= $this->params->get('displayTwitter', '1');
@@ -106,6 +107,9 @@ class plgContentYetAnotherSocial extends JPlugin {
 
 		// Counting the number of active buttons for CSS purposes
 		$count	= '0';
+
+		// Declare the stylesheet
+		JHtml::stylesheet('plugins/content/yetanothersocial/media/css/default.css', false, false, false);
 
 		// Check the scripts aren't already loaded and load if needed
 		// @TODO: Handle multi-language situations as able
