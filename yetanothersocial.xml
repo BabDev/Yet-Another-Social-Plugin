@@ -57,6 +57,7 @@
 		</fields>
 	</config>
     <files>
+    	<folder>media</folder>
     	<folder>tmpl</folder>
     	<filename plugin="yetanothersocial">yetanothersocial.php</filename>
     	<filename>index.html</filename>

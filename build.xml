@@ -23,6 +23,9 @@
 		<copy todir="packages/language">
 			<fileset dir="language" />
 		</copy>
+		<copy todir="packages/media">
+			<fileset dir="media" />
+		</copy>
 		<copy todir="packages/tmpl">
 			<fileset dir="tmpl" />
 		</copy>
