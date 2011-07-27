@@ -16,7 +16,7 @@ defined('_JEXEC') or die;
 // @TODO: Param for count and size
 if ($displayFacebook): ?>
 	<div class="yetanothersocial-facebook">
-		<fb:like href="<?php echo JURI::base().$itemURL; ?>" send="false" layout="button_count" width="450" show_faces="false" font="lucida grande" />
+		<fb:like href="<?php echo JURI::base().$itemURL; ?>" send="false" layout="button_count" show_faces="false" font="lucida grande" />
 	</div>
 <?php endif; ?>
 <?php // Google +1 button
