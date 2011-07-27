@@ -54,6 +54,84 @@
 					multiple="true"
 					size="10" />
 			</fieldset>
+			<fieldset name="facebook">
+				<field
+					name="facebookSend"
+					type="radio"
+					default="true"
+					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_SEND_LABEL"
+					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_SEND_DESCRIPTION" >
+					<option
+						value="false">JNO</option>
+					<option
+						value="true">JYES</option>
+				</field>
+				<field
+					name="facebookLayout"
+					type="list"
+					default="button_count"
+					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_LAYOUT_LABEL"
+					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_LAYOUT_DESCRIPTION" >
+					<option
+						value="standard">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_LAYOUT_OPTION_STANDARD</option>
+					<option
+						value="button_count">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_LAYOUT_OPTION_BUTTON</option>
+					<option
+						value="box_count">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_LAYOUT_OPTION_BOX</option>
+				</field>
+				<field
+					name="facebookFaces"
+					type="radio"
+					default="true"
+					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_FACES_LABEL"
+					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_FACES_DESCRIPTION" >
+					<option
+						value="false">JNO</option>
+					<option
+						value="true">JYES</option>
+				</field>
+				<field
+					name="facebookAction"
+					type="radio"
+					default="like"
+					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_ACTION_LABEL"
+					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_ACTION_DESCRIPTION" >
+					<option
+						value="like">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_ACTION_OPTION_LIKE</option>
+					<option
+						value="recommend">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_ACTION_OPTION_RECOMMEND</option>
+				</field>
+				<field
+					name="facebookFont"
+					type="list"
+					default="arial"
+					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_FONT_LABEL"
+					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_FONT_DESCRIPTION" >
+					<option
+						value="arial">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_FONT_OPTION_ARIAL</option>
+					<option
+						value="lucida grande">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_FONT_OPTION_LUCIDA_GRANDE</option>
+					<option
+						value="segoe ui">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_FONT_OPTION_SEGOE_UI</option>
+					<option
+						value="tahoma">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_FONT_OPTION_TAHOMA</option>
+					<option
+						value="trebuchet ms">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_FONT_OPTION_TREBUCHET_MS</option>
+					<option
+						value="verdana">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_FONT_OPTION_VERDANA</option>
+				</field>
+				<field
+					name="facebookColor"
+					type="radio"
+					default="light"
+					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_COLOR_LABEL"
+					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_COLOR_DESCRIPTION" >
+					<option
+						value="light">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_ACTION_COLOR_LIGHT</option>
+					<option
+						value="dark">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_ACTION_COLOR_DARK</option>
+				</field>
+			</fieldset>
 		</fields>
 	</config>
     <files>

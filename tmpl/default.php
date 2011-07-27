@@ -16,7 +16,7 @@ defined('_JEXEC') or die;
 // @TODO: Param for count and size
 if ($displayFacebook): ?>
 	<div class="yetanothersocial-facebook active-<?php echo $count; ?>">
-		<fb:like href="<?php echo $siteURL.$itemURL; ?>" send="false" layout="button_count" show_faces="false" font="lucida grande" />
+		<fb:like href="<?php echo $siteURL.$itemURL; ?>" send="<?php echo $this->params->get('facebookSend', 'true'); ?>" layout="<?php echo $this->params->get('facebookLayout', 'button_count'); ?>" show_faces="<?php echo $this->params->get('facebookFaces', 'true'); ?>" action="<?php echo $this->params->get('facebookAction', 'like'); ?>" font="<?php echo $this->params->get('facebookFont', 'arial'); ?>" colorscheme="<?php echo $this->params->get('facebookColor', 'light'); ?>" />
 	</div>
 <?php endif; ?>
 <?php // Google +1 button
