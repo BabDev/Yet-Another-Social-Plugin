@@ -16,14 +16,14 @@ defined('_JEXEC') or die;
 // @TODO: Param for count and size
 if ($displayFacebook): ?>
 	<div class="yetanothersocial-facebook">
-		<fb:like href="<?php echo JURI::base().$itemUrl; ?>" send="false" layout="button_count" width="450" show_faces="false" font="lucida grande" />
+		<fb:like href="<?php echo JURI::base().$itemURL; ?>" send="false" layout="button_count" width="450" show_faces="false" font="lucida grande" />
 	</div>
 <?php endif; ?>
 <?php // Google +1 button
 // @TODO: Param for count and size
 if ($displayGoogle): ?>
 	<div class="yetanothersocial-google">
-		<g:plusone size="standard" count="true" href="<?php echo JURI::base().$itemUrl; ?>"></g:plusone>
+		<g:plusone size="standard" count="true" href="<?php echo JURI::base().$itemURL; ?>"></g:plusone>
 	</div>
 <?php endif; ?>
 <?php // Twitter Share button
@@ -31,7 +31,7 @@ if ($displayGoogle): ?>
 if ($displayTwitter): ?>
 	<div class="yetanothersocial-twitter">
 		<a href="http://twitter.com/share" class="twitter-share-button"
-		data-url="<?php echo JURI::base().$itemUrl; ?>"
+		data-url="<?php echo JURI::base().$itemURL; ?>"
 		data-count="horizontal"
 		data-via="mbabker"
 		data-text="Check this out -">Tweet</a>
