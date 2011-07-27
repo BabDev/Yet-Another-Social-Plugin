@@ -39,6 +39,4 @@ if ($displayTwitter): ?>
 <?php endif; ?>
 </div>
 
-<?php
-echo $article->text;
-?>
+<?php echo $article->text; ?>

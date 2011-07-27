@@ -49,6 +49,7 @@ class plgContentYetAnotherSocial extends JPlugin {
 		$displayGoogle		= $this->params->get('displayGoogle', '1');
 		$displayTwitter		= $this->params->get('displayTwitter', '1');
 		$selectedCategories	= $this->params->def('displayCategories', '');
+		$view			= JRequest::getCmd('view');
 
 		// Check if the plugin is enabled
 		if (JPluginHelper::isEnabled('content', 'yetanothersocial') == false) {
@@ -63,7 +64,8 @@ class plgContentYetAnotherSocial extends JPlugin {
 		// If we're not in the article view, we have to get the full $article object ourselves
 		if ($view == 'featured' || $view == 'category') {
 			// We only want to handle com_content items; if this function returns null, there's no DB item
-			if (!is_null($this->loadArticle($article))) {
+			// Also, make sure the object isn't already loaded and undo previous plugin processing
+			if ((!is_null($this->loadArticle($article))) && (!isset($article->catid))) {
 				$article = $this->loadArticle($article);
 			}
 		}
@@ -127,6 +129,10 @@ class plgContentYetAnotherSocial extends JPlugin {
 		}
 
 		// Get the content and merge in the template
+		// First, see if $article->text is defined
+		if (!isset($article->text)) {
+			$article->text = $article->introtext;
+		}
 		ob_start();
 		$template = $this->getTemplatePath('default.php');
 		$tempPath = $template->file;
