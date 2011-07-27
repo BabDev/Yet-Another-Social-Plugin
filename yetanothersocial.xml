@@ -45,6 +45,14 @@
 					<option
 						value="1">JYES</option>
 				</field>
+				<field
+					name="displayCategories"
+					type="category"
+					extension="com_content"
+					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_CATEGORIES_LABEL"
+					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_CATEGORIES_DESCRIPTION"
+					multiple="true"
+					size="10" />
 			</fieldset>
 		</fields>
 	</config>
