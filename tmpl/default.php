@@ -15,23 +15,23 @@ defined('_JEXEC') or die;
 <?php // Facebook Like button
 // @TODO: Param for count and size
 if ($displayFacebook): ?>
-	<div class="yetanothersocial-facebook">
-		<fb:like href="<?php echo JURI::base().$itemURL; ?>" send="false" layout="button_count" show_faces="false" font="lucida grande" />
+	<div class="yetanothersocial-facebook active-<?php echo $count; ?>">
+		<fb:like href="<?php echo $siteURL.$itemURL; ?>" send="false" layout="button_count" show_faces="false" font="lucida grande" />
 	</div>
 <?php endif; ?>
 <?php // Google +1 button
 // @TODO: Param for count and size
 if ($displayGoogle): ?>
-	<div class="yetanothersocial-google">
-		<g:plusone size="standard" count="true" href="<?php echo JURI::base().$itemURL; ?>"></g:plusone>
+	<div class="yetanothersocial-google active-<?php echo $count; ?>">
+		<g:plusone size="standard" count="true" href="<?php echo $siteURL.$itemURL; ?>"></g:plusone>
 	</div>
 <?php endif; ?>
 <?php // Twitter Share button
 // @TODO: Param for Twitter account, text, count
 if ($displayTwitter): ?>
-	<div class="yetanothersocial-twitter">
+	<div class="yetanothersocial-twitter active-<?php echo $count; ?>">
 		<a href="http://twitter.com/share" class="twitter-share-button"
-		data-url="<?php echo JURI::base().$itemURL; ?>"
+		data-url="<?php echo $siteURL.$itemURL; ?>"
 		data-count="horizontal"
 		data-via="mbabker"
 		data-text="Check this out -">Tweet</a>
