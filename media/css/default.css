@@ -1,0 +1,23 @@
+/**
+* Yet Another Social Plugin
+*
+* @copyright	Copyright (C) 2011 Michael Babker. All rights reserved.
+* @license		GNU/GPL - http://www.gnu.org/copyleft/gpl.html
+*
+*/
+
+.active-1 {
+width: 100%;
+}
+
+.active-2 {
+width: 50%;
+}
+
+.active-3 {
+width: 33%;
+}
+
+.yetanothersocial-facebook, .yetanothersocial-google, .yetanothersocial-twitter {
+float: left;
+}
