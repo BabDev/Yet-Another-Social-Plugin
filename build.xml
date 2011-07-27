@@ -23,6 +23,9 @@
 		<copy todir="packages/language">
 			<fileset dir="language" />
 		</copy>
+		<copy todir="packages/tmpl">
+			<fileset dir="tmpl" />
+		</copy>
 		<copy todir="packages">
 			<fileset dir=".">
 				<include name="CHANGELOG" />

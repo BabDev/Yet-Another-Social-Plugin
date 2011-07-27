@@ -54,6 +54,11 @@ class plgContentYetAnotherSocial extends JPlugin {
 			return;
 		}
 
+		// Check that we're actually displaying a button
+		if ($displayFacebook == '0' && $displayGoogle == '0' && $displayTwitter == '0') {
+			return;
+		}
+
 		// I'm not doing anything useful just yet ;-)
 		return;
 
@@ -104,17 +109,57 @@ class plgContentYetAnotherSocial extends JPlugin {
 		// Build the URL for the plugins to use
 		$itemURL = JRoute::_(ContentHelperRoute::getArticleRoute($article->slug, $article->catid));
 
+		// Counting the number of active buttons for CSS purposes
+		$count	= '0';
+
 		// Check the scripts aren't already loaded and load if needed
 		// @TODO: Handle multi-language situations as able
 		if ($displayFacebook && !in_array('<script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>', $document->_custom)) {
 			$document->addCustomTag('<script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>');
+			$count++;
 		}
 		if ($displayGoogle && !in_array('<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>', $document->_custom)) {
 			$document->addCustomTag('<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>');
+			$count++;
 		}
 		if ($displayTwitter && !in_array('<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>', $document->_custom)) {
 			$document->addCustomTag('<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>');
+			$count++;
 		}
+
+		// Get the content and merge in the template
+		ob_start();
+		$template = $this->getTemplatePath('default.php');
+		$tempPath = $template->file;
+		include($tempPath);
+		$output = ob_get_contents();
+		ob_end_clean();
+
+		// Final output
+		$article->text = $output;
+		return;
+	}
+
+	/**
+	 * Function to determine the template file path
+	 *
+	 * @param	object	$file		The file name of the template
+	 *
+	 * @return	object	$path	The paths to the template
+	 * @since	1.0
+	 */
+	private function getTemplatePath($file)
+	{
+		$app	= JFactory::getApplication();
+		$path	= new JObject;
+		if (file_exists(JPATH_SITE.'/templates/'.$app->getTemplate().'/html/yetanothersocial/'.$file)) {
+			$path->file = JPATH_SITE.'/templates/'.$app->getTemplate().'/html/yetanothersocial/'.$file;
+			$path->http = JURI::base().'templates/'.$app->getTemplate().'/html/yetanothersocial/'.$file;
+		} else {
+			$path->file = JPATH_SITE.'/plugins/content/yetanothersocial/tmpl/'.$file;
+			$path->http = JURI::base().'plugins/content/yetanothersocial/tmpl/'.$file;
+		}
+		return $path;
 	}
 
 	/**
@@ -125,7 +170,7 @@ class plgContentYetAnotherSocial extends JPlugin {
 	 * @return	object	$article	The content object
 	 * @since	1.0
 	 */
-	public function loadArticle($article)
+	private function loadArticle($article)
 	{
 		// Query the database for the article text
 		$db = JFactory::getDBO();
