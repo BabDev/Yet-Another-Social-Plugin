@@ -44,12 +44,12 @@ class plgContentYetAnotherSocial extends JPlugin {
 	public function onContentPrepare($context, &$article, &$params, $limitstart)
 	{
 		// Set the parameters
-		$document		= JFactory::getDocument();
+		$document			= JFactory::getDocument();
 		$displayFacebook	= $this->params->get('displayFacebook', '1');
 		$displayGoogle		= $this->params->get('displayGoogle', '1');
 		$displayTwitter		= $this->params->get('displayTwitter', '1');
 		$selectedCategories	= $this->params->def('displayCategories', '');
-		$view			= JRequest::getCmd('view');
+		$view				= JRequest::getCmd('view');
 
 		// Check if the plugin is enabled
 		if (JPluginHelper::isEnabled('content', 'yetanothersocial') == false) {
@@ -107,9 +107,6 @@ class plgContentYetAnotherSocial extends JPlugin {
 		// Build the URL for the plugins to use
 		$itemURL = JRoute::_(ContentHelperRoute::getArticleRoute($article->slug, $article->catid));
 
-		// Counting the number of active buttons for CSS purposes
-		$count	= '0';
-
 		// Declare the stylesheet
 		JHtml::stylesheet('plugins/content/yetanothersocial/media/css/default.css', false, false, false);
 
@@ -117,15 +114,12 @@ class plgContentYetAnotherSocial extends JPlugin {
 		// @TODO: Handle multi-language situations as able
 		if ($displayFacebook && !in_array('<script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>', $document->_custom)) {
 			$document->addCustomTag('<script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>');
-			$count++;
 		}
 		if ($displayGoogle && !in_array('<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>', $document->_custom)) {
 			$document->addCustomTag('<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>');
-			$count++;
 		}
 		if ($displayTwitter && !in_array('<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>', $document->_custom)) {
 			$document->addCustomTag('<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>');
-			$count++;
 		}
 
 		// Get the content and merge in the template
