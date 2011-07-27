@@ -132,6 +132,34 @@
 						value="dark">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_ACTION_COLOR_DARK</option>
 				</field>
 			</fieldset>
+			<fieldset name="google">
+				<field
+					name="googleCount"
+					type="radio"
+					default="true"
+					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_GOOGLE_COUNT_LABEL"
+					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_GOOGLE_COUNT_DESCRIPTION" >
+					<option
+						value="false">JNO</option>
+					<option
+						value="true">JYES</option>
+				</field>
+				<field
+					name="googleSize"
+					type="list"
+					default="standard"
+					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_GOOGLE_SIZE_LABEL"
+					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_GOOGLE_SIZE_DESCRIPTION" >
+					<option
+						value="standard">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_GOOGLE_SIZE_OPTION_STANDARD</option>
+					<option
+						value="small">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_GOOGLE_SIZE_OPTION_SMALL</option>
+					<option
+						value="medium">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_GOOGLE_SIZE_OPTION_MEDIUM</option>
+					<option
+						value="tall">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_GOOGLE_SIZE_OPTION_TALL</option>
+				</field>
+			</fieldset>
 		</fields>
 	</config>
     <files>
