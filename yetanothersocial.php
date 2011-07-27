@@ -105,7 +105,8 @@ class plgContentYetAnotherSocial extends JPlugin {
 		$article->slug = $article->alias ? ($article->id . ':' . $article->alias) : $article->id;
 
 		// Build the URL for the plugins to use
-		$itemURL = JRoute::_(ContentHelperRoute::getArticleRoute($article->slug, $article->catid));
+		$siteURL	= substr(JURI::root(), 0, -1);
+		$itemURL	= JRoute::_(ContentHelperRoute::getArticleRoute($article->slug, $article->catid));
 
 		// Declare the stylesheet
 		JHtml::stylesheet('plugins/content/yetanothersocial/media/css/default.css', false, false, false);
