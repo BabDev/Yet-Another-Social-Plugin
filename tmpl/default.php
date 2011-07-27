@@ -39,9 +39,6 @@ if ($displayTwitter): ?>
 <?php endif; ?>
 </div>
 
-<?php // Check if we're in the full article view and render the correct element
-if ($context == 'com_content.article') {
-	echo $article->text;
-} else {
-	echo $article->introtext;
-}?>
+<?php
+echo $article->text;
+?>
