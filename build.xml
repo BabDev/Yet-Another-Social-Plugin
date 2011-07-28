@@ -16,6 +16,17 @@
 			</fileset>
 		</zip>
 	</target>
+	<target
+		name="release"
+		description="Builds a release package"
+		depends="rebuild-packages,build-temp" >
+		<echo msg="Build package" />
+		<zip destfile="releases/plg_content_yetanothersocial_100.zip">
+			<fileset dir="packages">
+				<include name="**" />
+			</fileset>
+		</zip>
+	</target>
 	<target name="build-temp" description="Stages the files" depends="rebuild-packages">
 		<echo msg="Create temp folder" />
 		<mkdir dir="packages" />
