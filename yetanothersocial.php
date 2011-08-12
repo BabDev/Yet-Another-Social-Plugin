@@ -132,8 +132,7 @@ class plgContentYetAnotherSocial extends JPlugin {
 		}
 		ob_start();
 		$template = $this->getTemplatePath($position.'.php');
-		$tempPath = $template->file;
-		include($tempPath);
+		include($template);
 		$output = ob_get_contents();
 		ob_end_clean();
 
@@ -172,13 +171,10 @@ class plgContentYetAnotherSocial extends JPlugin {
 	private function getTemplatePath($file)
 	{
 		$app	= JFactory::getApplication();
-		$path	= new JObject;
 		if (file_exists(JPATH_SITE.'/templates/'.$app->getTemplate().'/html/yetanothersocial/'.$file)) {
-			$path->file = JPATH_SITE.'/templates/'.$app->getTemplate().'/html/yetanothersocial/'.$file;
-			$path->http = JURI::base().'templates/'.$app->getTemplate().'/html/yetanothersocial/'.$file;
+			$path = JPATH_SITE.'/templates/'.$app->getTemplate().'/html/yetanothersocial/'.$file;
 		} else {
-			$path->file = JPATH_SITE.'/plugins/content/yetanothersocial/tmpl/'.$file;
-			$path->http = JURI::base().'plugins/content/yetanothersocial/tmpl/'.$file;
+			$path = JPATH_SITE.'/plugins/content/yetanothersocial/tmpl/'.$file;
 		}
 		return $path;
 	}
