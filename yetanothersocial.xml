@@ -54,6 +54,17 @@
 					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_CATEGORIES_DESCRIPTION"
 					multiple="true"
 					size="10" />
+				<field
+					name="displayPosition"
+					type="radio"
+					default="top"
+					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_POSITION_LABEL"
+					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_POSITION_DESCRIPTION" >
+					<option
+						value="top">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_POSITION_OPTION_TOP</option>
+					<option
+						value="bottom">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_POSITION_OPTION_BOTTOM</option>
+				</field>
 			</fieldset>
 			<fieldset name="facebook">
 				<field

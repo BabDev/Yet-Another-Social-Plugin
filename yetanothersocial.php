@@ -49,6 +49,7 @@ class plgContentYetAnotherSocial extends JPlugin {
 		$displayGoogle		= $this->params->get('displayGoogle', '1');
 		$displayTwitter		= $this->params->get('displayTwitter', '1');
 		$selectedCategories	= $this->params->def('displayCategories', '');
+		$position			= $this->params->def('displayPosition', 'top');
 		$view				= JRequest::getCmd('view');
 
 		// Check if the plugin is enabled
@@ -129,7 +130,7 @@ class plgContentYetAnotherSocial extends JPlugin {
 			$article->text = $article->introtext;
 		}
 		ob_start();
-		$template = $this->getTemplatePath('default.php');
+		$template = $this->getTemplatePath($position.'.php');
 		$tempPath = $template->file;
 		include($tempPath);
 		$output = ob_get_contents();
