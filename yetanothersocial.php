@@ -191,11 +191,11 @@ class plgContentYetAnotherSocial extends JPlugin {
 	{
 		// Query the database for the article text
 		$db = JFactory::getDBO();
-		$db->setQuery(
-			'SELECT *' .
-			' FROM `#__content`' .
-			' WHERE `introtext` = "'.$article->text.'"'
-		);
+		$query = $db->getQuery(true);
+		$query->select('*');
+		$query->from($db->quoteName('#__content'));
+		$query->where($db->quoteName('introtext').' = '.$db->quote($article->text));
+		$db->setQuery($query);
 		$article = $db->loadObject();
 
 		return $article;
