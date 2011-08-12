@@ -110,7 +110,8 @@ class plgContentYetAnotherSocial extends JPlugin {
 		$itemURL	= JRoute::_(ContentHelperRoute::getArticleRoute($article->slug, $article->catid));
 
 		// Declare the stylesheet
-		JHtml::stylesheet('plugins/content/yetanothersocial/media/css/default.css', false, false, false);
+		$css = $this->getCssPath('default.css');
+		JHtml::stylesheet($css, false, false, false);
 
 		// Check the scripts aren't already loaded and load if needed
 		// @TODO: Handle multi-language situations as able
@@ -142,9 +143,28 @@ class plgContentYetAnotherSocial extends JPlugin {
 	}
 
 	/**
+	 * Function to determine the CSS file path
+	 *
+	 * @param	object	$file	The file name of the template
+	 *
+	 * @return	object	$path	The paths to the template
+	 * @since	1.0.1
+	 */
+	private function getCssPath($file)
+	{
+		$app	= JFactory::getApplication();
+		if (file_exists(JPATH_SITE.'/templates/'.$app->getTemplate().'/html/yetanothersocial/'.$file)) {
+			$path = 'templates/'.$app->getTemplate().'/html/yetanothersocial/'.$file;
+		} else {
+			$path = 'plugins/content/yetanothersocial/media/css/'.$file;
+		}
+		return $path;
+	}
+
+	/**
 	 * Function to determine the template file path
 	 *
-	 * @param	object	$file		The file name of the template
+	 * @param	object	$file	The file name of the template
 	 *
 	 * @return	object	$path	The paths to the template
 	 * @since	1.0
