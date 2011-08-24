@@ -1,0 +1,14 @@
+[main]
+host = https://www.transifex.net
+lang_map = en: en-GB, pt_BR: pt-BR, sv_SE: sv-SE, es_ES: es-ES
+
+[yetanothersocial.yetanothersocial-configuration]
+file_filter = language/<lang>/<lang>.plg_content_yetanothersocial.ini
+source_file = language/en-GB/en-GB.plg_content_yetanothersocial.ini
+source_lang = en
+
+[yetanothersocial.yetanothersocial-system]
+file_filter = language/<lang>/<lang>.plg_content_yetanothersocial.sys.ini
+source_file = language/en-GB/en-GB.plg_content_yetanothersocial.sys.ini
+source_lang = en
+
