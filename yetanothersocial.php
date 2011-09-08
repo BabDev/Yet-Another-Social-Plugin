@@ -172,7 +172,7 @@ class plgContentYetAnotherSocial extends JPlugin
 			}
 			else if (in_array($artLang, $GlanguageLong))
 			{
-				$Glang	= '{lang: "'.$artLang.'"}';
+				$Glang	= 'window.___gcfg = {lang: "'.$artLang.'"};';
 			}
 			// None of the above are matched, define no language
 			else
@@ -189,7 +189,7 @@ class plgContentYetAnotherSocial extends JPlugin
 			}
 			else if (in_array($langCode, $GlanguageLong))
 			{
-				$Glang	= '{lang: "'.$langCode.'"}';
+				$Glang	= 'window.___gcfg = {lang: "'.$langCode.'"};';
 			}
 			// None of the above are matched, define no language
 			else
