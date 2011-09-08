@@ -87,23 +87,6 @@
 					<option
 						value="right">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_HOR_ALIGN_OPTION_RIGHT</option>
 				</field>
-				<field
-					name="languageDecl"
-					type="list"
-					default="en"
-					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_LANGUAGE_LABEL"
-					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_LANGUAGE_DESCRIPTION" >
-					<option
-						value="en">en-GB</option>
-					<option
-						value="nl">nl-NL</option>
-					<option
-						value="es">es-ES</option>
-					<option
-						value="pt">pt-BR</option>
-					<option
-						value="sv">sv-SE</option>
-				</field>
 			</fieldset>
 			<fieldset name="facebook">
 				<field

@@ -50,6 +50,7 @@ if ($displayTwitter): ?>
 			data-counturl="<?php echo $siteURL.$itemURL; ?>"
 			data-count="<?php echo $this->params->get('twitterCount', 'horizontal'); ?>"
 			data-via="<?php echo $this->params->get('twitterUser', ''); ?>"
+			data-lang="<?php echo $twitterLang?>"
 			data-related="<?php echo $this->params->get('twitterRelated', ''); ?>"
 			data-text="<?php echo $this->params->get('twitterText', ''); ?>">Tweet</a>
 	</div>
