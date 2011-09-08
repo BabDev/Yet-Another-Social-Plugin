@@ -133,39 +133,110 @@ class plgContentYetAnotherSocial extends JPlugin
 		$css = $this->getCssPath('default.css');
 		JHtml::stylesheet($css, false, false, false);
 
+		// Get the article's language
+		$artLang	= $article->language;
+
 		// Get the site language
 		$lang		= JFactory::getLanguage();
-		$langCode	= substr($lang->getTag(), 0, 2);
+		$locale		= $lang->getLocale();
+		$langCode	= $lang->getTag();
 
-		// @TODO: Add arrays for all legal languages for each plugin
+		// Facebook Language
+		if ($artLang != '*')
+		{
+			// Using article language
+			$FBlanguage = substr($artLang, 0, 2);
+		}
+		else
+		{
+			// Using site language
+			$FBlanguage	= $locale['2'];
+		}
 
-		// Declare Google & Facebook Language text
-		$languageSet = $this->params->get('languageDecl', 'en');
+		// Google+ Language
+		$GlanguageShort = array(
+						'ar', 'bg', 'ca', 'hr', 'cs', 'da', 'nl', 'et', 'fil', 'fi',
+						'fr', 'de', 'el', 'iw', 'hi', 'hu', 'id', 'it', 'ja', 'ko',
+						'lv', 'lt', 'ms', 'no', 'fa', 'pl', 'ro', 'ru', 'sr', 'sk',
+						'sl', 'es', 'sv', 'th', 'tr', 'uk', 'vi');
+		$GlanguageLong	= array(
+						'zh-CN', 'zh-TW', 'en-GB', 'en-US', 'pt-BR', 'pt-PT', 'es-419');
+
+		// Check if the article's language is *; use site language if so
+		if ($artLang != '*')
+		{
+			// Using article language
+			if (in_array(substr($artLang, 0, 2), $GlanguageShort))
+			{
+				$Glang	= 'window.___gcfg = {lang: "'.substr($artLang, 0, 2).'"};';
+			}
+			else if (in_array($artLang, $GlanguageLong))
+			{
+				$Glang	= '{lang: "'.$artLang.'"}';
+			}
+			// None of the above are matched, define no language
+			else
+			{
+				$Glang	= '';
+			}
+		}
+		else
+		{
+			// Using site language
+			if (in_array(substr($langCode, 0, 2), $GlanguageShort))
+			{
+				$Glang	= 'window.___gcfg = {lang: "'.substr($langCode, 0, 2).'"};';
+			}
+			else if (in_array($langCode, $GlanguageLong))
+			{
+				$Glang	= '{lang: "'.$langCode.'"}';
+			}
+			// None of the above are matched, define no language
+			else
+			{
+				$Glang	= '';
+			}
+		}
+
+		// Twitter Language
+		$tweetShort = array('pt', 'id', 'it', 'es', 'tr', 'en', 'ko', 'fr', 'nl', 'ru', 'de', 'ja');
+
+			// Check if the article's language is *; use site language if so
+		if ($artLang != '*')
+		{
+			// Using article language
+			if (in_array(substr($artLang, 0, 2), $tweetShort))
+			{
+				$twitterLang	= substr($artLang, 0, 2);
+			}
+			// Not in array, default to English
+			else
+			{
+				$twitterLang	= 'en';
+			}
+		}
+		else
+		{
+			// Using site language
+			if (in_array($locale['2'], $tweetShort))
+			{
+				$twitterLang	= $locale['2'];
+			}
+			// Not in array, default to English
+			else
+			{
+				$twitterLang	= 'en';
+			}
+		}
 
 		// Check the scripts aren't already loaded and load if needed
-		// @TODO: Handle multi-language situations as able
-		// #TODO: Check and set the language dynamically
-		if ($displayFacebook && $languageSet == 'en' && !in_array('<script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>', $document->_custom))
+		if ($displayFacebook && !in_array('<script src="http://connect.facebook.net/'.$FBlanguage.'/all.js#xfbml=1"></script>', $document->_custom))
 		{
-			$document->addCustomTag('<script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>');
+			$document->addCustomTag('<script src="http://connect.facebook.net/'.$FBlanguage.'/all.js#xfbml=1"></script>');
 		}
-		else if ($displayFacebook && $languageSet == 'nl' && !in_array('<script src="http://connect.facebook.net/nl_NL/all.js#xfbml=1"></script>', $document->_custom))
+		if ($displayGoogle && !in_array('<script type="text/javascript" src="https://apis.google.com/js/plusone.js">'.$Glang.'</script>', $document->_custom))
 		{
-			$document->addCustomTag('<script src="http://connect.facebook.net/nl_NL/all.js#xfbml=1"></script>');
-		}
-		else if ($displayFacebook && $languageSet == 'es' && !in_array('<script src="http://connect.facebook.net/es_ES/all.js#xfbml=1"></script>', $document->_custom))
-		{
-			$document->addCustomTag('<script src="http://connect.facebook.net/es_ES/all.js#xfbml=1"></script>');
-		}
-		else if ($displayFacebook && $languageSet == 'pt' && !in_array('<script src="http://connect.facebook.net/pt_BR/all.js#xfbml=1"></script>', $document->_custom)) {
-			$document->addCustomTag('<script src="http://connect.facebook.net/pt_BR/all.js#xfbml=1"></script>');
-		}
-		else if ($displayFacebook && $languageSet == 'sv' && !in_array('<script src="http://connect.facebook.net/sv_SE/all.js#xfbml=1"></script>', $document->_custom)) {
-			$document->addCustomTag('<script src="http://connect.facebook.net/sv_SE/all.js#xfbml=1"></script>');
-		}
-		if ($displayGoogle && !in_array('<script type="text/javascript" src="https://apis.google.com/js/plusone.js">{lang: "'.$languageSet.'"}</script>', $document->_custom))
-		{
-			$document->addCustomTag('<script type="text/javascript" src="https://apis.google.com/js/plusone.js">{lang: "'.$languageSet.'"}</script>');
+			$document->addCustomTag('<script type="text/javascript" src="https://apis.google.com/js/plusone.js">'.$Glang.'</script>');
 		}
 		if ($displayTwitter && !in_array('<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>', $document->_custom))
 		{
