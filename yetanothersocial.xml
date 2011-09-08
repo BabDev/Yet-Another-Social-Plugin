@@ -47,6 +47,17 @@
 						value="1">JYES</option>
 				</field>
 				<field
+					name="displayLinkedin"
+					type="radio"
+					default="1"
+					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_LINKEDIN_LABEL"
+					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_LINKEDIN_DESCRIPTION" >
+					<option
+						value="0">JNO</option>
+					<option
+						value="1">JYES</option>
+				</field>
+				<field
 					name="displayCategories"
 					type="category"
 					extension="com_content"
@@ -57,13 +68,41 @@
 				<field
 					name="displayPosition"
 					type="radio"
-					default="top"
+					default="bottom"
 					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_POSITION_LABEL"
 					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_POSITION_DESCRIPTION" >
 					<option
 						value="top">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_POSITION_OPTION_TOP</option>
 					<option
 						value="bottom">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_POSITION_OPTION_BOTTOM</option>
+				</field>
+				<field
+					name="horAlign"
+					type="radio"
+					default="right"
+					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_HOR_ALIGN_LABEL"
+					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_HOR_ALIGN_DESCRIPTION" >
+					<option
+						value="left">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_HOR_ALIGN_OPTION_LEFT</option>
+					<option
+						value="right">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_HOR_ALIGN_OPTION_RIGHT</option>
+				</field>
+				<field
+					name="languageDecl"
+					type="list"
+					default="en"
+					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_LANGUAGE_LABEL"
+					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_LANGUAGE_DESCRIPTION" >
+					<option
+						value="en">en-GB</option>
+					<option
+						value="nl">nl-NL</option>
+					<option
+						value="es">es-ES</option>
+					<option
+						value="pt">pt-BR</option>
+					<option
+						value="sv">sv-SE</option>
 				</field>
 			</fieldset>
 			<fieldset name="facebook">
@@ -159,7 +198,7 @@
 				<field
 					name="googleSize"
 					type="list"
-					default="standard"
+					default="medium"
 					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_GOOGLE_SIZE_LABEL"
 					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_GOOGLE_SIZE_DESCRIPTION" >
 					<option
@@ -192,10 +231,30 @@
 					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_TWITTER_USER_LABEL"
 					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_TWITTER_USER_DESCRIPTION" />
 				<field
+					name="twitterRelated"
+					type="text"
+					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_TWITTER_RELATED_LABEL"
+					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_TWITTER_RELATED_DESCRIPTION" />
+				<field
 					name="twitterText"
 					type="text"
 					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_TWITTER_TEXT_LABEL"
 					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_TWITTER_TEXT_DESCRIPTION" />
+			</fieldset>
+			<fieldset name="linkedin">
+			<field
+					name="linkedinCount"
+					type="list"
+					default="right"
+					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_LINKEDIN_COUNT_LABEL"
+					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_LINKEDIN_COUNT_DESCRIPTION" >
+					<option
+						value="none">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_LINKEDIN_COUNT_OPTION_NONE</option>
+					<option
+						value="right">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_LINKEDIN_COUNT_OPTION_HORIZONTAL</option>
+					<option
+						value="top">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_LINKEDIN_COUNT_OPTION_VERTICAL</option>
+				</field>
 			</fieldset>
 		</fields>
 	</config>
