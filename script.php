@@ -2,18 +2,17 @@
 /**
 * Yet Another Social Plugin
 *
+* @package    YetAnotherSocialPlugin
+*
 * @copyright  Copyright (C) 2011 Michael Babker. All rights reserved.
 * @license    GNU/GPL - http://www.gnu.org/copyleft/gpl.html
-*
-* @author     Michael Babker (Owner)
-* @author     Olaf Rietzschel (Contributor)
 */
 
 /**
  * Installation class to perform additional changes during install/uninstall/update
  *
- * @package		Yet Another Social Plugin
- * @since		1.0
+ * @package  YetAnotherSocialPlugin
+ * @since    1.0
  */
 class plgContentYetAnotherSocialInstallerScript
 {

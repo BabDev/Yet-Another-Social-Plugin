@@ -2,14 +2,12 @@
 /**
 * Yet Another Social Plugin
 *
+* @package    YetAnotherSocialPlugin
+*
 * @copyright  Copyright (C) 2011 Michael Babker. All rights reserved.
 * @license    GNU/GPL - http://www.gnu.org/copyleft/gpl.html
-*
-* @author     Michael Babker (Owner)
-* @author     Olaf Rietzschel (Contributor)
 */
 
-// Restricted access
 defined('_JEXEC') or die;
 ?>
 

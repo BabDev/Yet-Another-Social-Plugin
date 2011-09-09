@@ -2,26 +2,30 @@
 /**
 * Yet Another Social Plugin
 *
+* @package    YetAnotherSocialPlugin
+*
 * @copyright  Copyright (C) 2011 Michael Babker. All rights reserved.
 * @license    GNU/GPL - http://www.gnu.org/copyleft/gpl.html
-*
-* @author     Michael Babker (Owner)
-* @author     Olaf Rietzschel (Contributor)
 */
 
-// Restricted access
 defined('_JEXEC') or die;
 
 jimport('joomla.plugin.plugin');
-require_once(JPATH_SITE.'/components/com_content/helpers/route.php');
+require_once JPATH_SITE.'/components/com_content/helpers/route.php';
 
+/**
+ * Yet Another Social Plugin Content Plugin
+ *
+ * @package  YetAnotherSocialPlugin
+ * @since    1.0
+ */
 class plgContentYetAnotherSocial extends JPlugin
 {
 	/**
 	 * Constructor
 	 *
-	 * @param   object  $subject  The object to observe
-	 * @param   array   $config   An array that holds the plugin configuration
+	 * @param   object  &$subject  The object to observe
+	 * @param   array   $config    An array that holds the plugin configuration
 	 *
 	 * @return	plgContentYetAnotherSocial
 	 *
@@ -45,7 +49,7 @@ class plgContentYetAnotherSocial extends JPlugin
 	 *
 	 * @since   1.0
 	 */
-	public function onContentPrepare($context, &$article, &$params, $limitstart)
+	public function onContentPrepare($context, &$article, &$params, $page)
 	{
 		// Set the parameters
 		$document			= JFactory::getDocument();
@@ -74,15 +78,15 @@ class plgContentYetAnotherSocial extends JPlugin
 		{
 			// We only want to handle com_content items; if this function returns null, there's no DB item
 			// Also, make sure the object isn't already loaded and undo previous plugin processing
-			if ((!is_null($this->loadArticle($article))) && (!isset($article->catid)))
+			if ((!is_null($this->_loadArticle($article))) && (!isset($article->catid)))
 			{
-				$article = $this->loadArticle($article);
+				$article = $this->_loadArticle($article);
 			}
 		}
 
 		// Make sure we have a category ID, otherwise, end processing
 		$properties = get_object_vars($article);
-		if (!(array_key_exists ('catid', $properties)))
+		if (!(array_key_exists('catid', $properties)))
 		{
 			return;
 		}
@@ -130,7 +134,7 @@ class plgContentYetAnotherSocial extends JPlugin
 		$itemURL	= JRoute::_(ContentHelperRoute::getArticleRoute($article->slug, $article->catid));
 
 		// Declare the stylesheet
-		$css = $this->getCssPath('default.css');
+		$css = $this->_getCssPath('default.css');
 		JHtml::stylesheet($css, false, false, false);
 
 		// Get the article's language
@@ -254,8 +258,8 @@ class plgContentYetAnotherSocial extends JPlugin
 			$article->text = $article->introtext;
 		}
 		ob_start();
-		$template = $this->getTemplatePath($position.'.php');
-		include($template);
+		$template = $this->_getTemplatePath($position.'.php');
+		include $template;
 		$output = ob_get_contents();
 		ob_end_clean();
 
@@ -273,7 +277,7 @@ class plgContentYetAnotherSocial extends JPlugin
 	 *
 	 * @since   1.0
 	 */
-	private function getCssPath($file)
+	private function _getCssPath($file)
 	{
 		$app	= JFactory::getApplication();
 		if (file_exists(JPATH_SITE.'/templates/'.$app->getTemplate().'/html/yetanothersocial/'.$file))
@@ -296,7 +300,7 @@ class plgContentYetAnotherSocial extends JPlugin
 	 *
 	 * @since   1.0
 	 */
-	private function getTemplatePath($file)
+	private function _getTemplatePath($file)
 	{
 		$app	= JFactory::getApplication();
 		if (file_exists(JPATH_SITE.'/templates/'.$app->getTemplate().'/html/yetanothersocial/'.$file))
@@ -319,7 +323,7 @@ class plgContentYetAnotherSocial extends JPlugin
 	 *
 	 * @since	1.0
 	 */
-	private function loadArticle($article)
+	private function _loadArticle($article)
 	{
 		// Query the database for the article text
 		$db = JFactory::getDBO();
