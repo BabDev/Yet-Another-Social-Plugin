@@ -146,92 +146,13 @@ class plgContentYetAnotherSocial extends JPlugin
 		$langCode	= $lang->getTag();
 
 		// Facebook Language
-		if ($artLang != '*')
-		{
-			// Using article language
-			$FBlanguage = substr($artLang, 0, 2);
-		}
-		else
-		{
-			// Using site language
-			$FBlanguage	= $locale['2'];
-		}
+		$FBlanguage = $this->_getFBLanguage($artLang, $locale);
 
 		// Google+ Language
-		$GlanguageShort = array(
-						'ar', 'bg', 'ca', 'hr', 'cs', 'da', 'nl', 'et', 'fil', 'fi',
-						'fr', 'de', 'el', 'iw', 'hi', 'hu', 'id', 'it', 'ja', 'ko',
-						'lv', 'lt', 'ms', 'no', 'fa', 'pl', 'ro', 'ru', 'sr', 'sk',
-						'sl', 'es', 'sv', 'th', 'tr', 'uk', 'vi');
-		$GlanguageLong	= array(
-						'zh-CN', 'zh-TW', 'en-GB', 'en-US', 'pt-BR', 'pt-PT', 'es-419');
-
-		// Check if the article's language is *; use site language if so
-		if ($artLang != '*')
-		{
-			// Using article language
-			if (in_array(substr($artLang, 0, 2), $GlanguageShort))
-			{
-				$Glang	= 'window.___gcfg = {lang: "'.substr($artLang, 0, 2).'"};';
-			}
-			else if (in_array($artLang, $GlanguageLong))
-			{
-				$Glang	= 'window.___gcfg = {lang: "'.$artLang.'"};';
-			}
-			// None of the above are matched, define no language
-			else
-			{
-				$Glang	= '';
-			}
-		}
-		else
-		{
-			// Using site language
-			if (in_array(substr($langCode, 0, 2), $GlanguageShort))
-			{
-				$Glang	= 'window.___gcfg = {lang: "'.substr($langCode, 0, 2).'"};';
-			}
-			else if (in_array($langCode, $GlanguageLong))
-			{
-				$Glang	= 'window.___gcfg = {lang: "'.$langCode.'"};';
-			}
-			// None of the above are matched, define no language
-			else
-			{
-				$Glang	= '';
-			}
-		}
+		$Glang = $this->_getGoogleLanguage($artLang, $langCode);
 
 		// Twitter Language
-		$tweetShort = array('pt', 'id', 'it', 'es', 'tr', 'en', 'ko', 'fr', 'nl', 'ru', 'de', 'ja');
-
-			// Check if the article's language is *; use site language if so
-		if ($artLang != '*')
-		{
-			// Using article language
-			if (in_array(substr($artLang, 0, 2), $tweetShort))
-			{
-				$twitterLang	= substr($artLang, 0, 2);
-			}
-			// Not in array, default to English
-			else
-			{
-				$twitterLang	= 'en';
-			}
-		}
-		else
-		{
-			// Using site language
-			if (in_array($locale['2'], $tweetShort))
-			{
-				$twitterLang	= $locale['2'];
-			}
-			// Not in array, default to English
-			else
-			{
-				$twitterLang	= 'en';
-			}
-		}
+		$twitterLang = $this->_getTwitterLanguage($artLang, $locale);
 
 		// Check the scripts aren't already loaded and load if needed
 		if ($displayFacebook && !in_array('<script src="http://connect.facebook.net/'.$FBlanguage.'/all.js#xfbml=1"></script>', $document->_custom))
@@ -292,6 +213,88 @@ class plgContentYetAnotherSocial extends JPlugin
 	}
 
 	/**
+	 * Function to set the language for the Facebook Like button
+	 *
+	 * @param   string  $artLang  The language of the article
+	 * @param   string  $locale   The site locale
+	 *
+	 * @return  string  The language to use for Facebook's Like button
+	 *
+	 * @since   1.1
+	 */
+	private function _getFBLanguage($artLang, $locale)
+	{
+		if ($artLang != '*')
+		{
+			// Using article language
+			$FBlanguage = substr($artLang, 0, 2);
+		}
+		else
+		{
+			// Using site language
+			$FBlanguage	= $locale['2'];
+		}
+		return $FBlanguage;
+	}
+
+	/**
+	 * Function to set the language for the Google +1 button
+	 *
+	 * @param   string  $artLang   The language of the article
+	 * @param   string  $langCode  The site language code
+	 *
+	 * @return  string  The language to use for Google's +1 button
+	 *
+	 * @since   1.1
+	 */
+	private function _getGoogleLanguage($artLang, $langCode)
+	{
+		$GlanguageShort = array(
+						'ar', 'bg', 'ca', 'hr', 'cs', 'da', 'nl', 'et', 'fil', 'fi',
+						'fr', 'de', 'el', 'iw', 'hi', 'hu', 'id', 'it', 'ja', 'ko',
+						'lv', 'lt', 'ms', 'no', 'fa', 'pl', 'ro', 'ru', 'sr', 'sk',
+						'sl', 'es', 'sv', 'th', 'tr', 'uk', 'vi');
+		$GlanguageLong	= array('zh-CN', 'zh-TW', 'en-GB', 'en-US', 'pt-BR', 'pt-PT', 'es-419');
+
+		// Check if the article's language is *; use site language if so
+		if ($artLang != '*')
+		{
+			// Using article language
+			if (in_array(substr($artLang, 0, 2), $GlanguageShort))
+			{
+				$Glang	= 'window.___gcfg = {lang: "'.substr($artLang, 0, 2).'"};';
+			}
+			else if (in_array($artLang, $GlanguageLong))
+			{
+				$Glang	= 'window.___gcfg = {lang: "'.$artLang.'"};';
+			}
+			// None of the above are matched, define no language
+			else
+			{
+				$Glang	= '';
+			}
+		}
+		else
+		{
+			// Using site language
+			if (in_array(substr($langCode, 0, 2), $GlanguageShort))
+			{
+				$Glang	= 'window.___gcfg = {lang: "'.substr($langCode, 0, 2).'"};';
+			}
+			else if (in_array($langCode, $GlanguageLong))
+			{
+				$Glang	= 'window.___gcfg = {lang: "'.$langCode.'"};';
+			}
+			// None of the above are matched, define no language
+			else
+			{
+				$Glang	= '';
+			}
+		}
+		return $Glang;
+	}
+
+	/**
 	 * Function to determine the template file path
 	 *
 	 * @param   string  $file  The file name of the template
@@ -312,6 +315,51 @@ class plgContentYetAnotherSocial extends JPlugin
 			$path = JPATH_SITE.'/plugins/content/yetanothersocial/tmpl/'.$file;
 		}
 		return $path;
+	}
+
+	/**
+	 * Function to set the language for the Twitter Tweet button
+	 *
+	 * @param   string  $artLang  The language of the article
+	 * @param   string  $locale   The site locale
+	 *
+	 * @return  string  The language to use for Twitter's Tweet button
+	 *
+	 * @since   1.1
+	 */
+	private function _getTwitterLanguage($artLang, $locale)
+	{
+		// Authorized languages
+		$tweetShort = array('pt', 'id', 'it', 'es', 'tr', 'en', 'ko', 'fr', 'nl', 'ru', 'de', 'ja');
+
+		// Check if the article's language is *; use site language if so
+		if ($artLang != '*')
+		{
+			// Using article language
+			if (in_array(substr($artLang, 0, 2), $tweetShort))
+			{
+				$twitterLang	= substr($artLang, 0, 2);
+			}
+			// Not in array, default to English
+			else
+			{
+				$twitterLang	= 'en';
+			}
+		}
+		else
+		{
+			// Using site language
+			if (in_array($locale['2'], $tweetShort))
+			{
+				$twitterLang	= $locale['2'];
+			}
+			// Not in array, default to English
+			else
+			{
+				$twitterLang	= 'en';
+			}
+		}
+		return $FBlanguage;
 	}
 
 	/**
