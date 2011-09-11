@@ -36,6 +36,17 @@
 						value="1">JYES</option>
 				</field>
 				<field
+					name="displayBuzz"
+					type="radio"
+					default="1"
+					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_BUZZ_LABEL"
+					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_BUZZ_DESCRIPTION" >
+					<option
+						value="0">JNO</option>
+					<option
+						value="1">JYES</option>
+				</field>
+				<field
 					name="displayTwitter"
 					type="radio"
 					default="1"
@@ -192,6 +203,30 @@
 						value="medium">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_GOOGLE_SIZE_OPTION_MEDIUM</option>
 					<option
 						value="tall">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_GOOGLE_SIZE_OPTION_TALL</option>
+				</field>
+			</fieldset>
+			<fieldset name="buzz">
+				<field
+					name="buzzMessage"
+					type="text"
+					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_BUZZ_TEXT_LABEL"
+					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_BUZZ_TEXT_DESCRIPTION" />
+				<field
+					name="buzzStyle"
+					type="list"
+					default="normal-count"
+					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_BUZZ_STYLE_LABEL"
+					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_BUZZ_STYLE_DESCRIPTION" >
+					<option
+						value="normal-count">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_BUZZ_STYLE_OPTION_NORMAL_COUNT</option>
+					<option
+						value="small-count">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_BUZZ_STYLE_OPTION_SMALL_COUNT</option>
+					<option
+						value="normal-button">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_BUZZ_STYLE_OPTION_NORMAL_BUTTON</option>
+					<option
+						value="small-button">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_BUZZ_STYLE_OPTION_SMALL_BUTTON</option>
+					<option
+						value="link">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_BUZZ_STYLE_OPTION_LINK</option>
 				</field>
 			</fieldset>
 			<fieldset name="twitter">

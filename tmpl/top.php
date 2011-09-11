@@ -32,6 +32,17 @@ if ($displayGoogle): ?>
 			href="<?php echo $siteURL.$itemURL; ?>"></g:plusone>
 	</div>
 <?php endif; ?>
+<?php // Google Buzz button
+if ($displayBuzz): ?>
+	<div class="yetanothersocial-buzz" style="float:<?php echo $this->params->get('horAlign', 'left'); ?>;">
+		<a href="http://www.google.com/buzz/post"
+			class="google-buzz-button" title="Google Buzz"
+			data-message="<?php echo $this->params->get('buzzMessage', ''); ?>"
+			data-url="<?php echo $siteURL.$itemURL; ?>"
+			<?php echo $buzzLang; ?>
+			data-button-style="<?php echo $this->params->get('buzzStyle', 'normal-count'); ?>"></a>
+	</div>
+<?php endif; ?>
 <?php // Linkedin Share button
 if ($displayLinkedin): ?>
 	<div class="yetanothersocial-linkedin" style="float:<?php echo $this->params->get('horAlign', 'left'); ?>;">

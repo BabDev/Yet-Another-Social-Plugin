@@ -57,6 +57,7 @@ class plgContentYetAnotherSocial extends JPlugin
 		$displayGoogle		= $this->params->get('displayGoogle', '1');
 		$displayTwitter		= $this->params->get('displayTwitter', '1');
 		$displayLinkedin	= $this->params->get('displayLinkedin', '1');
+		$displayBuzz		= $this->params->get('displayBuzz', '1');
 		$selectedCategories	= $this->params->def('displayCategories', '');
 		$position			= $this->params->def('displayPosition', 'top');
 		$view				= JRequest::getCmd('view');
@@ -151,6 +152,9 @@ class plgContentYetAnotherSocial extends JPlugin
 		// Google+ Language
 		$Glang = $this->_getGoogleLanguage($artLang, $langCode);
 
+		// Google Buzz Language
+		$buzzLang = $this->_getBuzzLanguage($artLang, $langCode);
+
 		// Twitter Language
 		$twitterLang = $this->_getTwitterLanguage($artLang, $locale);
 
@@ -162,6 +166,10 @@ class plgContentYetAnotherSocial extends JPlugin
 		if ($displayGoogle && !in_array('<script type="text/javascript" src="https://apis.google.com/js/plusone.js">'.$Glang.'</script>', $document->_custom))
 		{
 			$document->addCustomTag('<script type="text/javascript" src="https://apis.google.com/js/plusone.js">'.$Glang.'</script>');
+		}
+		if ($displayBuzz && !in_array('<script type="text/javascript" src="http://www.google.com/buzz/api/button.js"></script>', $document->_custom))
+		{
+			$document->addCustomTag('<script type="text/javascript" src="http://www.google.com/buzz/api/button.js"></script>');
 		}
 		if ($displayTwitter && !in_array('<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>', $document->_custom))
 		{
@@ -187,6 +195,65 @@ class plgContentYetAnotherSocial extends JPlugin
 		// Final output
 		$article->text = $output;
 		return;
+	}
+
+	/**
+	 * Function to set the language for the Google Buzz button
+	 *
+	 * @param   string  $artLang   The language of the article
+	 * @param   string  $langCode  The site language code
+	 *
+	 * @return  string  The language to use for Google's Buzz button
+	 *
+	 * @since   1.1
+	 */
+	private function _getBuzzLanguage($artLang, $langCode)
+	{
+		$GlanguageShort = array(
+						'ar', 'bg', 'ca', 'hr', 'cs', 'da', 'nl', 'et', 'fil', 'fi',
+						'fr', 'de', 'el', 'iw', 'hi', 'hu', 'id', 'it', 'ja', 'ko',
+						'lv', 'lt', 'ms', 'no', 'fa', 'pl', 'ro', 'ru', 'sr', 'sk',
+						'sl', 'es', 'sv', 'th', 'tr', 'uk', 'vi');
+		$GlanguageLong	= array('zh-CN', 'zh-TW', 'en-GB', 'en-US', 'pt-BR', 'pt-PT', 'es-419');
+
+		// Check if the article's language is *; use site language if so
+		if ($artLang != '*')
+		{
+			// Using article language
+			if (in_array(substr($artLang, 0, 2), $GlanguageShort))
+			{
+				$buzzLang	= 'data-locale="'.substr($artLang, 0, 2).'"';
+			}
+			else if (in_array($artLang, $GlanguageLong))
+			{
+				$buzzLang	= 'data-locale="'.$artLang.'"';
+			}
+			// None of the above are matched, set no language
+			// The Buzz API sets language based on browser config if one isn't set
+			else
+			{
+				$buzzLang	= '';
+			}
+		}
+		else
+		{
+			// Using site language
+			if (in_array(substr($langCode, 0, 2), $GlanguageShort))
+			{
+				$buzzLang	= 'data-locale="'.substr($langCode, 0, 2).'"';
+			}
+			else if (in_array($langCode, $GlanguageLong))
+			{
+				$buzzLang	= 'data-locale="'.$langCode.'"';
+			}
+			// None of the above are matched, set no language
+			// The Buzz API sets language based on browser config if one isn't set
+			else
+			{
+				$buzzLang	= '';
+			}
+		}
+		return $buzzLang;
 	}
 
 	/**
@@ -359,7 +426,7 @@ class plgContentYetAnotherSocial extends JPlugin
 				$twitterLang	= 'en';
 			}
 		}
-		return $FBlanguage;
+		return $twitterLang;
 	}
 
 	/**
