@@ -7,6 +7,10 @@
 * @license    GNU/GPL - http://www.gnu.org/copyleft/gpl.html
 */
 
-.yetanothersocial-buzz, .yetanothersocial-facebook, .yetanothersocial-google, .yetanothersocial-linkedin, .yetanothersocial-twitter {
+.left-align {
 	float: left;
+}
+
+.right-align {
+	float: right;
 }
