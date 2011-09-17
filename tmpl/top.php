@@ -14,7 +14,7 @@ defined('_JEXEC') or die;
 <div class="yetanothersocial-container">
 <?php // Facebook Like button
 if ($displayFacebook): ?>
-	<div class="yetanothersocial-facebook" class="<?php echo $this->params->get('horAlign', 'left'); ?>-align">
+	<div class="yetanothersocial-facebook <?php echo $this->params->get('horAlign', 'left'); ?>-align">
 		<fb:like href="<?php echo $siteURL.$itemURL; ?>"
 			send="<?php echo $this->params->get('facebookSend', 'true'); ?>"
 			layout="<?php echo $this->params->get('facebookLayout', 'button_count'); ?>"
@@ -26,7 +26,7 @@ if ($displayFacebook): ?>
 <?php endif; ?>
 <?php // Google +1 button
 if ($displayGoogle): ?>
-	<div class="yetanothersocial-google" class="<?php echo $this->params->get('horAlign', 'left'); ?>-align">
+	<div class="yetanothersocial-google <?php echo $this->params->get('horAlign', 'left'); ?>-align">
 		<g:plusone size="<?php echo $this->params->get('googleSize', 'standard'); ?>"
 			count="<?php echo $this->params->get('googleCount', 'true'); ?>"
 			href="<?php echo $siteURL.$itemURL; ?>"></g:plusone>
@@ -34,7 +34,7 @@ if ($displayGoogle): ?>
 <?php endif; ?>
 <?php // Google Buzz button
 if ($displayBuzz): ?>
-	<div class="yetanothersocial-buzz" class="<?php echo $this->params->get('horAlign', 'left'); ?>-align">
+	<div class="yetanothersocial-buzz <?php echo $this->params->get('horAlign', 'left'); ?>-align">
 		<a href="http://www.google.com/buzz/post"
 			class="google-buzz-button" title="Google Buzz"
 			data-message="<?php echo $this->params->get('buzzMessage', ''); ?>"
@@ -45,7 +45,7 @@ if ($displayBuzz): ?>
 <?php endif; ?>
 <?php // Linkedin Share button
 if ($displayLinkedin): ?>
-	<div class="yetanothersocial-linkedin" class="<?php echo $this->params->get('horAlign', 'left'); ?>-align">
+	<div class="yetanothersocial-linkedin <?php echo $this->params->get('horAlign', 'left'); ?>-align">
 		<script type="IN/Share"
 			data-url="<?php echo $siteURL.$itemURL; ?>"
 			data-counter="<?php echo $this->params->get('linkedinCount', 'right'); ?>"></script>
@@ -53,7 +53,7 @@ if ($displayLinkedin): ?>
 <?php endif; ?>
 <?php // Twitter Share button
 if ($displayTwitter): ?>
-	<div class="yetanothersocial-twitter" class="<?php echo $this->params->get('horAlign', 'left'); ?>-align">
+	<div class="yetanothersocial-twitter <?php echo $this->params->get('horAlign', 'left'); ?>-align">
 		<a href="http://twitter.com/share" class="twitter-share-button"
 			data-url="<?php echo $siteURL.$itemURL; ?>"
 			data-counturl="<?php echo $siteURL.$itemURL; ?>"
