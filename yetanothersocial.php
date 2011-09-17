@@ -403,9 +403,15 @@ class plgContentYetAnotherSocial extends JPlugin
 		if ($artLang != '*')
 		{
 			// Using article language
+			// Check the 2 letter codes
 			if (in_array(substr($artLang, 0, 2), $tweetShort))
 			{
 				$twitterLang	= substr($artLang, 0, 2);
+			}
+			// Check the 3 letter codes
+			else if (in_array(substr($artLang, 0, 3), $tweetShort))
+			{
+				$twitterLang	= substr($artLang, 0, 3);
 			}
 			// Not in array, default to English
 			else
