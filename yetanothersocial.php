@@ -397,7 +397,7 @@ class plgContentYetAnotherSocial extends JPlugin
 	private function _getTwitterLanguage($artLang, $locale)
 	{
 		// Authorized languages
-		$tweetShort = array('pt', 'id', 'it', 'es', 'tr', 'en', 'ko', 'fr', 'nl', 'ru', 'de', 'ja');
+		$tweetShort = array('pt', 'id', 'it', 'es', 'tr', 'en', 'ko', 'fr', 'nl', 'ru', 'de', 'ja', 'hi', 'fil', 'msa');
 
 		// Check if the article's language is *; use site language if so
 		if ($artLang != '*')
