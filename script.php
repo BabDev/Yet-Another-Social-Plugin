@@ -22,7 +22,7 @@ class plgContentYetAnotherSocialInstallerScript
 	 * @param   string  $type    The action being performed
 	 * @param   string  $parent  The function calling this method
 	 *
-	 * @return  void
+	 * @return  mixed  Boolean false if checks fail, void otherwise
 	 *
 	 * @since   1.0
 	 */
