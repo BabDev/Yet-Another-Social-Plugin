@@ -69,7 +69,7 @@ class plgContentYetAnotherSocial extends JPlugin
 		}
 
 		// Check that we're actually displaying a button
-		if ($displayFacebook == '0' && $displayGoogle == '0' && $displayTwitter == '0' && $displayLinkedin == '0')
+		if ($displayFacebook == '0' && $displayGoogle == '0' && $displayBuzz == '0' && $displayTwitter == '0' && $displayLinkedin == '0')
 		{
 			return;
 		}
@@ -159,22 +159,27 @@ class plgContentYetAnotherSocial extends JPlugin
 		$twitterLang = $this->_getTwitterLanguage($artLang, $locale);
 
 		// Check the scripts aren't already loaded and load if needed
+		// Facebook
 		if ($displayFacebook && !in_array('<script src="http://connect.facebook.net/'.$FBlanguage.'/all.js#xfbml=1"></script>', $document->_custom))
 		{
 			$document->addCustomTag('<script src="http://connect.facebook.net/'.$FBlanguage.'/all.js#xfbml=1"></script>');
 		}
+		// Google +1
 		if ($displayGoogle && !in_array('<script type="text/javascript" src="https://apis.google.com/js/plusone.js">'.$Glang.'</script>', $document->_custom))
 		{
 			$document->addCustomTag('<script type="text/javascript" src="https://apis.google.com/js/plusone.js">'.$Glang.'</script>');
 		}
+		// Google Buzz
 		if ($displayBuzz && !in_array('<script type="text/javascript" src="http://www.google.com/buzz/api/button.js"></script>', $document->_custom))
 		{
 			$document->addCustomTag('<script type="text/javascript" src="http://www.google.com/buzz/api/button.js"></script>');
 		}
+		// Twitter Tweet
 		if ($displayTwitter && !in_array('<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>', $document->_custom))
 		{
 			$document->addCustomTag('<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>');
 		}
+		// LinkedIn Share
 		if ($displayLinkedin && !in_array('<script src="http://platform.linkedin.com/in.js" type="text/javascript"></script>', $document->_custom))
 		{
 			$document->addCustomTag('<script src="http://platform.linkedin.com/in.js" type="text/javascript"></script>');
