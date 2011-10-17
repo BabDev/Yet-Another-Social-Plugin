@@ -1,6 +1,31 @@
+29-September-2011 Michael Babker
+~ Add check for Buzz being enabled
+
+--------------------------------------------------
+Yet Another Social Plugin 1.1 Beta - Released 17-September-2011
+--------------------------------------------------
+17-September-2011 Michael Babker
+~ Update Twitter languages
+~ Add logic for Twitter Language 3 letter codes
+
+11-September-2011 Michael Babker
++ Add Google Buzz button
+~ Change inline style to classes
+
+9-September-2011 Michael Babker
++ Add sr-RS translation
+~ Move language processing to separate functions
+
+8-September-2011 Michael Babker
++ Add work from Olaf
++ Add dynamic processing for languages
+
 28-August-2011 Michael Babker
 + Add nl-NL translation
 
+--------------------------------------------------
+Yet Another Social Plugin 1.0.1 - Released 12-August-2011
+--------------------------------------------------
 12-August-2011 Michael Babker
 + Add ability to display buttons at the bottom of the article
 + Add ability to add custom default.css
@@ -8,6 +33,9 @@
 30-July-2011 Michael Babker
 + Add pt-BR and sv-SE translations
 
+--------------------------------------------------
+Yet Another Social Plugin 1.0.0 - Released 28-July-2011
+--------------------------------------------------
 28-July-2011 Michael Babker
 + Add options for Facebook Button
 + Add options for Google Button
