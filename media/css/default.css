@@ -14,3 +14,7 @@
 .right-align {
 	float: right;
 }
+
+.yetanothersocial-container div {
+	min-width: 100px;
+}
