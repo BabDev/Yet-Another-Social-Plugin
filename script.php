@@ -14,7 +14,7 @@
  * @package  YetAnotherSocialPlugin
  * @since    1.0
  */
-class plgContentYetAnotherSocialInstallerScript
+class PlgContentYetAnotherSocialInstallerScript
 {
 	/**
 	 * Function to act prior to installation process begins
@@ -29,7 +29,7 @@ class plgContentYetAnotherSocialInstallerScript
 	function preflight($type, $parent)
 	{
 		// Requires Joomla! 1.7 or newer
-		$jversion = new JVersion();
+		$jversion = new JVersion;
 		if (version_compare($jversion->getShortVersion(), '1.7', 'lt'))
 		{
 			JError::raiseWarning(null, JText::_('PLG_CONTENT_YETANOTHERSOCIAL_ERROR_J17'));

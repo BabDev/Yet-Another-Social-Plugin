@@ -19,7 +19,7 @@ require_once JPATH_SITE.'/components/com_content/helpers/route.php';
  * @package  YetAnotherSocialPlugin
  * @since    1.0
  */
-class plgContentYetAnotherSocial extends JPlugin
+class PlgContentYetAnotherSocial extends JPlugin
 {
 	/**
 	 * Constructor
@@ -27,7 +27,7 @@ class plgContentYetAnotherSocial extends JPlugin
 	 * @param   object  &$subject  The object to observe
 	 * @param   array   $config    An array that holds the plugin configuration
 	 *
-	 * @return	plgContentYetAnotherSocial
+	 * @return	PlgContentYetAnotherSocial
 	 *
 	 * @since	1.0
 	 */
@@ -103,11 +103,12 @@ class plgContentYetAnotherSocial extends JPlugin
 		}
 
 		// Define category restrictions
+		// Expected "if (...)\n...{...}\n...else\n"; found "if (...)\n...{...}\n...else "
 		if (is_array($selectedCategories))
 		{
 			$categories = $selectedCategories;
 		}
-		else if ($selectedCategories == '')
+		elseif ($selectedCategories == '')
 		{
 			$categories[] = $currentCategory;
 		}
@@ -229,7 +230,7 @@ class plgContentYetAnotherSocial extends JPlugin
 			{
 				$buzzLang	= 'data-locale="'.substr($artLang, 0, 2).'"';
 			}
-			else if (in_array($artLang, $GlanguageLong))
+			elseif (in_array($artLang, $GlanguageLong))
 			{
 				$buzzLang	= 'data-locale="'.$artLang.'"';
 			}
@@ -247,7 +248,7 @@ class plgContentYetAnotherSocial extends JPlugin
 			{
 				$buzzLang	= 'data-locale="'.substr($langCode, 0, 2).'"';
 			}
-			else if (in_array($langCode, $GlanguageLong))
+			elseif (in_array($langCode, $GlanguageLong))
 			{
 				$buzzLang	= 'data-locale="'.$langCode.'"';
 			}
@@ -336,7 +337,7 @@ class plgContentYetAnotherSocial extends JPlugin
 			{
 				$Glang	= 'window.___gcfg = {lang: "'.substr($artLang, 0, 2).'"};';
 			}
-			else if (in_array($artLang, $GlanguageLong))
+			elseif (in_array($artLang, $GlanguageLong))
 			{
 				$Glang	= 'window.___gcfg = {lang: "'.$artLang.'"};';
 			}
@@ -353,7 +354,7 @@ class plgContentYetAnotherSocial extends JPlugin
 			{
 				$Glang	= 'window.___gcfg = {lang: "'.substr($langCode, 0, 2).'"};';
 			}
-			else if (in_array($langCode, $GlanguageLong))
+			elseif (in_array($langCode, $GlanguageLong))
 			{
 				$Glang	= 'window.___gcfg = {lang: "'.$langCode.'"};';
 			}
@@ -414,7 +415,7 @@ class plgContentYetAnotherSocial extends JPlugin
 				$twitterLang	= substr($artLang, 0, 2);
 			}
 			// Check the 3 letter codes
-			else if (in_array(substr($artLang, 0, 3), $tweetShort))
+			elseif (in_array(substr($artLang, 0, 3), $tweetShort))
 			{
 				$twitterLang	= substr($artLang, 0, 3);
 			}
