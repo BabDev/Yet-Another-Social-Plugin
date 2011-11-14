@@ -57,7 +57,6 @@ class PlgContentYetAnotherSocial extends JPlugin
 		$displayGoogle		= $this->params->get('displayGoogle', '1');
 		$displayTwitter		= $this->params->get('displayTwitter', '1');
 		$displayLinkedin	= $this->params->get('displayLinkedin', '1');
-		$displayBuzz		= $this->params->get('displayBuzz', '1');
 		$selectedCategories	= $this->params->def('displayCategories', '');
 		$position			= $this->params->def('displayPosition', 'top');
 		$view				= JRequest::getCmd('view');
@@ -69,7 +68,7 @@ class PlgContentYetAnotherSocial extends JPlugin
 		}
 
 		// Check that we're actually displaying a button
-		if ($displayFacebook == '0' && $displayGoogle == '0' && $displayBuzz == '0' && $displayTwitter == '0' && $displayLinkedin == '0')
+		if ($displayFacebook == '0' && $displayGoogle == '0' && $displayTwitter == '0' && $displayLinkedin == '0')
 		{
 			return;
 		}
@@ -103,7 +102,6 @@ class PlgContentYetAnotherSocial extends JPlugin
 		}
 
 		// Define category restrictions
-		// Expected "if (...)\n...{...}\n...else\n"; found "if (...)\n...{...}\n...else "
 		if (is_array($selectedCategories))
 		{
 			$categories = $selectedCategories;
@@ -153,9 +151,6 @@ class PlgContentYetAnotherSocial extends JPlugin
 		// Google+ Language
 		$Glang = $this->_getGoogleLanguage($artLang, $langCode);
 
-		// Google Buzz Language
-		$buzzLang = $this->_getBuzzLanguage($artLang, $langCode);
-
 		// Twitter Language
 		$twitterLang = $this->_getTwitterLanguage($artLang, $locale);
 
@@ -169,11 +164,6 @@ class PlgContentYetAnotherSocial extends JPlugin
 		if ($displayGoogle && !in_array('<script type="text/javascript" src="https://apis.google.com/js/plusone.js">'.$Glang.'</script>', $document->_custom))
 		{
 			$document->addCustomTag('<script type="text/javascript" src="https://apis.google.com/js/plusone.js">'.$Glang.'</script>');
-		}
-		// Google Buzz
-		if ($displayBuzz && !in_array('<script type="text/javascript" src="http://www.google.com/buzz/api/button.js"></script>', $document->_custom))
-		{
-			$document->addCustomTag('<script type="text/javascript" src="http://www.google.com/buzz/api/button.js"></script>');
 		}
 		// Twitter Tweet
 		if ($displayTwitter && !in_array('<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>', $document->_custom))
@@ -201,65 +191,6 @@ class PlgContentYetAnotherSocial extends JPlugin
 		// Final output
 		$article->text = $output;
 		return;
-	}
-
-	/**
-	 * Function to set the language for the Google Buzz button
-	 *
-	 * @param   string  $artLang   The language of the article
-	 * @param   string  $langCode  The site language code
-	 *
-	 * @return  string  The language to use for Google's Buzz button
-	 *
-	 * @since   1.1
-	 */
-	private function _getBuzzLanguage($artLang, $langCode)
-	{
-		$GlanguageShort = array(
-						'ar', 'bg', 'ca', 'hr', 'cs', 'da', 'nl', 'et', 'fil', 'fi',
-						'fr', 'de', 'el', 'iw', 'hi', 'hu', 'id', 'it', 'ja', 'ko',
-						'lv', 'lt', 'ms', 'no', 'fa', 'pl', 'ro', 'ru', 'sr', 'sk',
-						'sl', 'es', 'sv', 'th', 'tr', 'uk', 'vi');
-		$GlanguageLong	= array('zh-CN', 'zh-TW', 'en-GB', 'en-US', 'pt-BR', 'pt-PT', 'es-419');
-
-		// Check if the article's language is *; use site language if so
-		if ($artLang != '*')
-		{
-			// Using article language
-			if (in_array(substr($artLang, 0, 2), $GlanguageShort))
-			{
-				$buzzLang	= 'data-locale="'.substr($artLang, 0, 2).'"';
-			}
-			elseif (in_array($artLang, $GlanguageLong))
-			{
-				$buzzLang	= 'data-locale="'.$artLang.'"';
-			}
-			// None of the above are matched, set no language
-			// The Buzz API sets language based on browser config if one isn't set
-			else
-			{
-				$buzzLang	= '';
-			}
-		}
-		else
-		{
-			// Using site language
-			if (in_array(substr($langCode, 0, 2), $GlanguageShort))
-			{
-				$buzzLang	= 'data-locale="'.substr($langCode, 0, 2).'"';
-			}
-			elseif (in_array($langCode, $GlanguageLong))
-			{
-				$buzzLang	= 'data-locale="'.$langCode.'"';
-			}
-			// None of the above are matched, set no language
-			// The Buzz API sets language based on browser config if one isn't set
-			else
-			{
-				$buzzLang	= '';
-			}
-		}
-		return $buzzLang;
 	}
 
 	/**
