@@ -50,14 +50,14 @@ class PlgContentYetAnotherSocial extends JPlugin
 	public function onContentPrepare($context, &$article, &$params, $page)
 	{
 		// Set the parameters
-		$document			= JFactory::getDocument();
-		$displayFacebook	= $this->params->get('displayFacebook', '1');
-		$displayGoogle		= $this->params->get('displayGoogle', '1');
-		$displayTwitter		= $this->params->get('displayTwitter', '1');
-		$displayLinkedin	= $this->params->get('displayLinkedin', '1');
-		$selectedCategories	= $this->params->def('displayCategories', '');
-		$position			= $this->params->def('displayPosition', 'top');
-		$view				= JFactory::getApplication()->input->get('view', '', 'cmd');
+		$document = JFactory::getDocument();
+		$displayFacebook = $this->params->get('displayFacebook', '1');
+		$displayGoogle = $this->params->get('displayGoogle', '1');
+		$displayTwitter = $this->params->get('displayTwitter', '1');
+		$displayLinkedin = $this->params->get('displayLinkedin', '1');
+		$selectedCategories = $this->params->def('displayCategories', '');
+		$position = $this->params->def('displayPosition', 'top');
+		$view = JFactory::getApplication()->input->get('view', '', 'cmd');
 
 		// Check if the plugin is enabled
 		if (JPluginHelper::isEnabled('content', 'yetanothersocial') == false)
@@ -128,20 +128,20 @@ class PlgContentYetAnotherSocial extends JPlugin
 		$article->slug = $article->alias ? ($article->id . ':' . $article->alias) : $article->id;
 
 		// Build the URL for the plugins to use
-		$siteURL	= substr(JURI::root(), 0, -1);
-		$itemURL	= JRoute::_(ContentHelperRoute::getArticleRoute($article->slug, $article->catid));
+		$siteURL = substr(JURI::root(), 0, -1);
+		$itemURL = JRoute::_(ContentHelperRoute::getArticleRoute($article->slug, $article->catid));
 
 		// Declare the stylesheet
 		$css = $this->_getCssPath('default.css');
 		JHtml::stylesheet($css, false, false, false);
 
 		// Get the article's language
-		$artLang	= $article->language;
+		$artLang = $article->language;
 
 		// Get the site language
-		$lang		= JFactory::getLanguage();
-		$locale		= $lang->getLocale();
-		$langCode	= $lang->getTag();
+		$lang = JFactory::getLanguage();
+		$locale = $lang->getLocale();
+		$langCode = $lang->getTag();
 
 		// Facebook Language
 		$FBlanguage = $this->_getFBLanguage($artLang, $locale);
@@ -154,14 +154,14 @@ class PlgContentYetAnotherSocial extends JPlugin
 
 		// Check the scripts aren't already loaded and load if needed
 		// Facebook
-		if ($displayFacebook && !in_array('<script src="http://connect.facebook.net/'.$FBlanguage.'/all.js#xfbml=1"></script>', $document->_custom))
+		if ($displayFacebook && !in_array('<script src="http://connect.facebook.net/' . $FBlanguage . '/all.js#xfbml=1"></script>', $document->_custom))
 		{
-			$document->addCustomTag('<script src="http://connect.facebook.net/'.$FBlanguage.'/all.js#xfbml=1"></script>');
+			$document->addCustomTag('<script src="http://connect.facebook.net/' . $FBlanguage . '/all.js#xfbml=1"></script>');
 		}
 		// Google +1
-		if ($displayGoogle && !in_array('<script type="text/javascript" src="https://apis.google.com/js/plusone.js">'.$Glang.'</script>', $document->_custom))
+		if ($displayGoogle && !in_array('<script type="text/javascript" src="https://apis.google.com/js/plusone.js">' . $Glang . '</script>', $document->_custom))
 		{
-			$document->addCustomTag('<script type="text/javascript" src="https://apis.google.com/js/plusone.js">'.$Glang.'</script>');
+			$document->addCustomTag('<script type="text/javascript" src="https://apis.google.com/js/plusone.js">' . $Glang . '</script>');
 		}
 		// Twitter Tweet
 		if ($displayTwitter && !in_array('<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>', $document->_custom))
@@ -181,7 +181,7 @@ class PlgContentYetAnotherSocial extends JPlugin
 			$article->text = $article->introtext;
 		}
 		ob_start();
-		$template = $this->_getTemplatePath($position.'.php');
+		$template = $this->_getTemplatePath($position . '.php');
 		include $template;
 		$output = ob_get_contents();
 		ob_end_clean();
@@ -202,14 +202,14 @@ class PlgContentYetAnotherSocial extends JPlugin
 	 */
 	private function _getCssPath($file)
 	{
-		$app	= JFactory::getApplication();
-		if (file_exists(JPATH_SITE.'/templates/'.$app->getTemplate().'/html/yetanothersocial/'.$file))
+		$app = JFactory::getApplication();
+		if (file_exists(JPATH_SITE . '/templates/' . $app->getTemplate() . '/html/yetanothersocial/' . $file))
 		{
-			$path = 'templates/'.$app->getTemplate().'/html/yetanothersocial/'.$file;
+			$path = 'templates/' . $app->getTemplate() . '/html/yetanothersocial/' . $file;
 		}
 		else
 		{
-			$path = 'plugins/content/yetanothersocial/media/css/'.$file;
+			$path = 'plugins/content/yetanothersocial/media/css/' . $file;
 		}
 		return $path;
 	}
@@ -234,7 +234,7 @@ class PlgContentYetAnotherSocial extends JPlugin
 		else
 		{
 			// Using site language
-			$FBlanguage	= $locale['2'];
+			$FBlanguage = $locale['2'];
 		}
 		return $FBlanguage;
 	}
@@ -264,16 +264,16 @@ class PlgContentYetAnotherSocial extends JPlugin
 			// Using article language
 			if (in_array(substr($artLang, 0, 2), $GlanguageShort))
 			{
-				$Glang	= 'window.___gcfg = {lang: "'.substr($artLang, 0, 2).'"};';
+				$Glang = 'window.___gcfg = {lang: "' . substr($artLang, 0, 2) . '"};';
 			}
 			elseif (in_array($artLang, $GlanguageLong))
 			{
-				$Glang	= 'window.___gcfg = {lang: "'.$artLang.'"};';
+				$Glang = 'window.___gcfg = {lang: "' . $artLang . '"};';
 			}
-			// None of the above are matched, define no language
+				// None of the above are matched, define no language
 			else
 			{
-				$Glang	= '';
+				$Glang = '';
 			}
 		}
 		else
@@ -281,16 +281,16 @@ class PlgContentYetAnotherSocial extends JPlugin
 			// Using site language
 			if (in_array(substr($langCode, 0, 2), $GlanguageShort))
 			{
-				$Glang	= 'window.___gcfg = {lang: "'.substr($langCode, 0, 2).'"};';
+				$Glang = 'window.___gcfg = {lang: "' . substr($langCode, 0, 2) . '"};';
 			}
 			elseif (in_array($langCode, $GlanguageLong))
 			{
-				$Glang	= 'window.___gcfg = {lang: "'.$langCode.'"};';
+				$Glang = 'window.___gcfg = {lang: "' . $langCode . '"};';
 			}
-			// None of the above are matched, define no language
+				// None of the above are matched, define no language
 			else
 			{
-				$Glang	= '';
+				$Glang = '';
 			}
 		}
 		return $Glang;
@@ -307,14 +307,14 @@ class PlgContentYetAnotherSocial extends JPlugin
 	 */
 	private function _getTemplatePath($file)
 	{
-		$app	= JFactory::getApplication();
-		if (file_exists(JPATH_SITE.'/templates/'.$app->getTemplate().'/html/yetanothersocial/'.$file))
+		$app = JFactory::getApplication();
+		if (file_exists(JPATH_SITE . '/templates/' . $app->getTemplate() . '/html/yetanothersocial/' . $file))
 		{
-			$path = JPATH_SITE.'/templates/'.$app->getTemplate().'/html/yetanothersocial/'.$file;
+			$path = JPATH_SITE . '/templates/' . $app->getTemplate() . '/html/yetanothersocial/' . $file;
 		}
 		else
 		{
-			$path = JPATH_SITE.'/plugins/content/yetanothersocial/tmpl/'.$file;
+			$path = JPATH_SITE . '/plugins/content/yetanothersocial/tmpl/' . $file;
 		}
 		return $path;
 	}
@@ -341,17 +341,17 @@ class PlgContentYetAnotherSocial extends JPlugin
 			// Check the 2 letter codes
 			if (in_array(substr($artLang, 0, 2), $tweetShort))
 			{
-				$twitterLang	= substr($artLang, 0, 2);
+				$twitterLang = substr($artLang, 0, 2);
 			}
 			// Check the 3 letter codes
 			elseif (in_array(substr($artLang, 0, 3), $tweetShort))
 			{
-				$twitterLang	= substr($artLang, 0, 3);
+				$twitterLang = substr($artLang, 0, 3);
 			}
 			// Not in array, default to English
 			else
 			{
-				$twitterLang	= 'en';
+				$twitterLang = 'en';
 			}
 		}
 		else
@@ -359,19 +359,19 @@ class PlgContentYetAnotherSocial extends JPlugin
 			// Using site language
 			if (in_array($locale['2'], $tweetShort))
 			{
-				$twitterLang	= $locale['2'];
+				$twitterLang = $locale['2'];
 			}
 			// Not in array, default to English
 			else
 			{
-				$twitterLang	= 'en';
+				$twitterLang = 'en';
 			}
 		}
 		return $twitterLang;
 	}
 
 	/**
-	 * Function to retreive the full article object
+	 * Function to retrieve the full article object
 	 *
 	 * @param   object  $article  The content object
 	 *
@@ -386,7 +386,7 @@ class PlgContentYetAnotherSocial extends JPlugin
 		$query = $db->getQuery(true);
 		$query->select('*');
 		$query->from($db->quoteName('#__content'));
-		$query->where($db->quoteName('introtext').' = '.$db->quote($article->text));
+		$query->where($db->quoteName('introtext') . ' = ' . $db->quote($article->text));
 		$db->setQuery($query);
 		$article = $db->loadObject();
 

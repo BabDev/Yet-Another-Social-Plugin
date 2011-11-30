@@ -247,20 +247,6 @@
     	<filename plugin="yetanothersocial">yetanothersocial.php</filename>
     	<filename>index.html</filename>
     </files>
-	<languages>
-		<language tag="es-ES">language/es-ES/es-ES.plg_content_yetanothersocial.ini</language>
-		<language tag="es-ES">language/es-ES/es-ES.plg_content_yetanothersocial.sys.ini</language>
-		<language tag="en-GB">language/en-GB/en-GB.plg_content_yetanothersocial.ini</language>
-		<language tag="en-GB">language/en-GB/en-GB.plg_content_yetanothersocial.sys.ini</language>
-		<language tag="nl-NL">language/nl-NL/nl-NL.plg_content_yetanothersocial.ini</language>
-		<language tag="nl-NL">language/nl-NL/nl-NL.plg_content_yetanothersocial.sys.ini</language>
-		<language tag="pt-BR">language/pt-BR/pt-BR.plg_content_yetanothersocial.ini</language>
-		<language tag="pt-BR">language/pt-BR/pt-BR.plg_content_yetanothersocial.sys.ini</language>
-		<language tag="sr-RS">language/sr-RS/sr-RS.plg_content_yetanothersocial.ini</language>
-		<language tag="sr-RS">language/sr-RS/sr-RS.plg_content_yetanothersocial.sys.ini</language>
-		<language tag="sv-SE">language/sv-SE/sv-SE.plg_content_yetanothersocial.ini</language>
-		<language tag="sv-SE">language/sv-SE/sv-SE.plg_content_yetanothersocial.sys.ini</language>
-    </languages>
 	<updateservers>
 		<server type="extension" name="Yet Another Social Plugin Updates" priority="2">http://www.babdev.com/updates/YAS.xml</server>
 	</updateservers>

@@ -22,7 +22,7 @@ class PlgContentYetAnotherSocialInstallerScript
 	 * @param   string  $type    The action being performed
 	 * @param   string  $parent  The function calling this method
 	 *
-	 * @return  mixed  Boolean false if checks fail, void otherwise
+	 * @return  boolean  True on success
 	 *
 	 * @since   1.0
 	 */
@@ -35,5 +35,7 @@ class PlgContentYetAnotherSocialInstallerScript
 			JError::raiseWarning(null, JText::_('PLG_CONTENT_YETANOTHERSOCIAL_ERROR_J17'));
 			return false;
 		}
+
+		return true;
 	}
 }
