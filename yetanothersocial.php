@@ -27,8 +27,6 @@ class PlgContentYetAnotherSocial extends JPlugin
 	 * @param   object  &$subject  The object to observe
 	 * @param   array   $config    An array that holds the plugin configuration
 	 *
-	 * @return	PlgContentYetAnotherSocial
-	 *
 	 * @since	1.0
 	 */
 	public function __construct(&$subject, $config)
@@ -59,7 +57,7 @@ class PlgContentYetAnotherSocial extends JPlugin
 		$displayLinkedin	= $this->params->get('displayLinkedin', '1');
 		$selectedCategories	= $this->params->def('displayCategories', '');
 		$position			= $this->params->def('displayPosition', 'top');
-		$view				= JRequest::getCmd('view');
+		$view				= JFactory::getApplication()->input->get('view', '', 'cmd');
 
 		// Check if the plugin is enabled
 		if (JPluginHelper::isEnabled('content', 'yetanothersocial') == false)
