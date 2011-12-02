@@ -26,7 +26,7 @@ class PlgContentYetAnotherSocialInstallerScript
 	 *
 	 * @since   1.0
 	 */
-	function preflight($type, $parent)
+	public function preflight($type, $parent)
 	{
 		// Requires Joomla! 1.7 or newer
 		$jversion = new JVersion;

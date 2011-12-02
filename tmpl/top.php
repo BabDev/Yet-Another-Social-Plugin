@@ -15,7 +15,7 @@ defined('_JEXEC') or die;
 <?php // Facebook Like button
 if ($displayFacebook): ?>
 	<div class="yetanothersocial-facebook <?php echo $this->params->get('horAlign', 'left'); ?>-align">
-		<fb:like href="<?php echo $siteURL.$itemURL; ?>"
+		<fb:like href="<?php echo $siteURL . $itemURL; ?>"
 			send="<?php echo $this->params->get('facebookSend', 'true'); ?>"
 			layout="<?php echo $this->params->get('facebookLayout', 'button_count'); ?>"
 			show_faces="<?php echo $this->params->get('facebookFaces', 'true'); ?>"
@@ -29,14 +29,14 @@ if ($displayGoogle): ?>
 	<div class="yetanothersocial-google <?php echo $this->params->get('horAlign', 'left'); ?>-align">
 		<g:plusone size="<?php echo $this->params->get('googleSize', 'standard'); ?>"
 			count="<?php echo $this->params->get('googleCount', 'true'); ?>"
-			href="<?php echo $siteURL.$itemURL; ?>"></g:plusone>
+			href="<?php echo $siteURL . $itemURL; ?>"></g:plusone>
 	</div>
 <?php endif; ?>
 <?php // Linkedin Share button
 if ($displayLinkedin): ?>
 	<div class="yetanothersocial-linkedin <?php echo $this->params->get('horAlign', 'left'); ?>-align">
 		<script type="IN/Share"
-			data-url="<?php echo $siteURL.$itemURL; ?>"
+			data-url="<?php echo $siteURL . $itemURL; ?>"
 			data-counter="<?php echo $this->params->get('linkedinCount', 'right'); ?>"></script>
 	</div>
 <?php endif; ?>
@@ -44,8 +44,8 @@ if ($displayLinkedin): ?>
 if ($displayTwitter): ?>
 	<div class="yetanothersocial-twitter <?php echo $this->params->get('horAlign', 'left'); ?>-align">
 		<a href="http://twitter.com/share" class="twitter-share-button"
-			data-url="<?php echo $siteURL.$itemURL; ?>"
-			data-counturl="<?php echo $siteURL.$itemURL; ?>"
+			data-url="<?php echo $siteURL . $itemURL; ?>"
+			data-counturl="<?php echo $siteURL . $itemURL; ?>"
 			data-count="<?php echo $this->params->get('twitterCount', 'horizontal'); ?>"
 			data-via="<?php echo $this->params->get('twitterUser', ''); ?>"
 			data-lang="<?php echo $twitterLang?>"
