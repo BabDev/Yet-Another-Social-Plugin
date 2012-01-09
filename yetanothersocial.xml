@@ -241,13 +241,13 @@
 			</fieldset>
 		</fields>
 	</config>
-    <files>
+	<files>
 		<folder>language</folder>
-    	<folder>media</folder>
-    	<folder>tmpl</folder>
-    	<filename plugin="yetanothersocial">yetanothersocial.php</filename>
-    	<filename>index.html</filename>
-    </files>
+		<folder>media</folder>
+		<folder>tmpl</folder>
+		<filename plugin="yetanothersocial">yetanothersocial.php</filename>
+		<filename>index.html</filename>
+	</files>
 	<updateservers>
 		<server type="extension" name="Yet Another Social Plugin Updates" priority="2">http://www.babdev.com/updates/YAS.xml</server>
 	</updateservers>
