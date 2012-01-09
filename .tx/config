@@ -1,6 +1,7 @@
 [main]
 host = https://www.transifex.net
 lang_map = en: en-GB, pt_BR: pt-BR, sv_SE: sv-SE, es_ES: es-ES, nl_NL: nl-NL, de_DE: de-DE, pt_PT: pt-PT, sr_RS: sr-RS
+minimum_perc = 100
 
 [yetanothersocial.yetanothersocial-configuration]
 file_filter = language/<lang>/<lang>.plg_content_yetanothersocial.ini

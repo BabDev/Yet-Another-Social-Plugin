@@ -3,7 +3,7 @@
 	<name>plg_content_yetanothersocial</name>
 	<creationDate>July 2011</creationDate>
 	<author>Michael Babker</author>
-	<copyright>(C) 2011 Michael Babker</copyright>
+	<copyright>(C) 2011-2012 Michael Babker</copyright>
 	<authorEmail>mbabker@flbab.com</authorEmail>
 	<authorUrl>http://www.babdev.com</authorUrl>
 	<version>1.1 Beta</version>
@@ -242,6 +242,7 @@
 		</fields>
 	</config>
     <files>
+		<folder>language</folder>
     	<folder>media</folder>
     	<folder>tmpl</folder>
     	<filename plugin="yetanothersocial">yetanothersocial.php</filename>

@@ -4,7 +4,7 @@
 *
 * @package    YetAnotherSocialPlugin
 *
-* @copyright  Copyright (C) 2011 Michael Babker. All rights reserved.
+* @copyright  Copyright (C) 2011-2012 Michael Babker. All rights reserved.
 * @license    GNU/GPL - http://www.gnu.org/copyleft/gpl.html
 */
 
