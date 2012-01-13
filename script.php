@@ -28,11 +28,11 @@ class PlgContentYetAnotherSocialInstallerScript
 	 */
 	public function preflight($type, $parent)
 	{
-		// Requires Joomla! 1.7 or newer
+		// Requires Joomla! 2.5 or newer
 		$jversion = new JVersion;
-		if (version_compare($jversion->getShortVersion(), '1.7', 'lt'))
+		if (version_compare($jversion->getShortVersion(), '2.5', 'lt'))
 		{
-			JError::raiseWarning(null, JText::_('PLG_CONTENT_YETANOTHERSOCIAL_ERROR_J17'));
+			JError::raiseWarning(null, JText::_('PLG_CONTENT_YETANOTHERSOCIAL_ERROR_VERSION'));
 			return false;
 		}
 
