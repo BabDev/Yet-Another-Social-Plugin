@@ -31,7 +31,7 @@
 		description="Builds a release package"
 		depends="rebuild-packages,build-temp" >
 		<echo msg="Build package" />
-		<zip destfile="releases/plg_content_yetanothersocial_{$version}.zip">
+		<zip destfile="releases/plg_content_yetanothersocial_${version}.zip">
 			<fileset dir="packages">
 				<include name="**" />
 			</fileset>
