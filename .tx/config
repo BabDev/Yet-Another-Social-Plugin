@@ -1,6 +1,6 @@
 [main]
 host = https://www.transifex.net
-lang_map = en: en-GB, pt_BR: pt-BR, sv_SE: sv-SE, es_ES: es-ES, nl_NL: nl-NL, de_DE: de-DE, pt_PT: pt-PT, sr_RS: sr-RS
+lang_map = en: en-GB, pt_BR: pt-BR, sv_SE: sv-SE, es_ES: es-ES, nl_NL: nl-NL, de_DE: de-DE, pt_PT: pt-PT, sr_RS: sr-RS, tr_TR: tr-TR
 minimum_perc = 100
 
 [yetanothersocial.yetanothersocial-configuration]
@@ -12,4 +12,3 @@ source_lang = en
 file_filter = language/<lang>/<lang>.plg_content_yetanothersocial.sys.ini
 source_file = language/en-GB/en-GB.plg_content_yetanothersocial.sys.ini
 source_lang = en
-
