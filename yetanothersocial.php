@@ -151,22 +151,26 @@ class PlgContentYetAnotherSocial extends JPlugin
 		// Twitter Language
 		$twitterLang = $this->_getTwitterLanguage($artLang, $locale);
 
-		// Check the scripts aren't already loaded and load if needed
+		// Check that the scripts aren't already loaded and load if needed
+
 		// Facebook
 		if ($displayFacebook && !in_array('<script src="http://connect.facebook.net/' . $FBlanguage . '/all.js#xfbml=1"></script>', $document->_custom))
 		{
 			$document->addCustomTag('<script src="http://connect.facebook.net/' . $FBlanguage . '/all.js#xfbml=1"></script>');
 		}
+
 		// Google +1
 		if ($displayGoogle && !in_array('<script type="text/javascript" src="https://apis.google.com/js/plusone.js">' . $Glang . '</script>', $document->_custom))
 		{
 			$document->addCustomTag('<script type="text/javascript" src="https://apis.google.com/js/plusone.js">' . $Glang . '</script>');
 		}
+
 		// Twitter Tweet
 		if ($displayTwitter && !in_array('<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>', $document->_custom))
 		{
 			$document->addCustomTag('<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>');
 		}
+
 		// LinkedIn Share
 		if ($displayLinkedin && !in_array('<script src="http://platform.linkedin.com/in.js" type="text/javascript"></script>', $document->_custom))
 		{
@@ -260,16 +264,19 @@ class PlgContentYetAnotherSocial extends JPlugin
 		// Check if the article's language is *; use site language if so
 		if ($artLang != '*')
 		{
-			// Using article language
+			// Check the short language code based on the article's language
 			if (in_array(substr($artLang, 0, 2), $GlanguageShort))
 			{
 				$Glang = 'window.___gcfg = {lang: "' . substr($artLang, 0, 2) . '"};';
 			}
+
+			// Check the long language code based on the article's language
 			elseif (in_array($artLang, $GlanguageLong))
 			{
 				$Glang = 'window.___gcfg = {lang: "' . $artLang . '"};';
 			}
-				// None of the above are matched, define no language
+
+			// None of the above are matched, define no language
 			else
 			{
 				$Glang = '';
@@ -277,16 +284,19 @@ class PlgContentYetAnotherSocial extends JPlugin
 		}
 		else
 		{
-			// Using site language
+			// Check the short language code based on the site's language
 			if (in_array(substr($langCode, 0, 2), $GlanguageShort))
 			{
 				$Glang = 'window.___gcfg = {lang: "' . substr($langCode, 0, 2) . '"};';
 			}
+
+			// Check the long language code based on the site's language
 			elseif (in_array($langCode, $GlanguageLong))
 			{
 				$Glang = 'window.___gcfg = {lang: "' . $langCode . '"};';
 			}
-				// None of the above are matched, define no language
+
+			// None of the above are matched, define no language
 			else
 			{
 				$Glang = '';
@@ -336,17 +346,18 @@ class PlgContentYetAnotherSocial extends JPlugin
 		// Check if the article's language is *; use site language if so
 		if ($artLang != '*')
 		{
-			// Using article language
-			// Check the 2 letter codes
+			// Check the short language code based on the article's language
 			if (in_array(substr($artLang, 0, 2), $tweetShort))
 			{
 				$twitterLang = substr($artLang, 0, 2);
 			}
-			// Check the 3 letter codes
+
+			// Check the long language code based on the article's language
 			elseif (in_array(substr($artLang, 0, 3), $tweetShort))
 			{
 				$twitterLang = substr($artLang, 0, 3);
 			}
+
 			// Not in array, default to English
 			else
 			{
@@ -355,11 +366,12 @@ class PlgContentYetAnotherSocial extends JPlugin
 		}
 		else
 		{
-			// Using site language
+			// Check the language code based on the site's locale
 			if (in_array($locale['2'], $tweetShort))
 			{
 				$twitterLang = $locale['2'];
 			}
+
 			// Not in array, default to English
 			else
 			{
