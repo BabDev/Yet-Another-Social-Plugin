@@ -341,7 +341,8 @@ class PlgContentYetAnotherSocial extends JPlugin
 	private function _getTwitterLanguage($artLang, $locale)
 	{
 		// Authorized languages
-		$tweetShort = array('pt', 'id', 'it', 'es', 'tr', 'en', 'ko', 'fr', 'nl', 'ru', 'de', 'ja', 'hi', 'fil', 'msa');
+		$tweetShort = array('pt', 'id', 'it', 'es', 'tr', 'en', 'ko', 'fr', 'nl', 'ru', 'de', 'ja', 'hi', 'pl', 'no', 'da', 'fi', 'sv', 'fil', 'msa');
+		$tweetFull = array('zh-cn', 'zh-tw');
 
 		// Check if the article's language is *; use site language if so
 		if ($artLang != '*')
@@ -358,6 +359,12 @@ class PlgContentYetAnotherSocial extends JPlugin
 				$twitterLang = substr($artLang, 0, 3);
 			}
 
+			// Check the full language code based on the article's language
+			elseif (in_array($artLang, $tweetFull))
+			{
+				$twitterLang = $artLang;
+			}
+
 			// Not in array, default to English
 			else
 			{
@@ -367,9 +374,15 @@ class PlgContentYetAnotherSocial extends JPlugin
 		else
 		{
 			// Check the language code based on the site's locale
-			if (in_array($locale['2'], $tweetShort))
+			if (in_array(substr($locale['2'], 0, 2), $tweetShort))
 			{
-				$twitterLang = $locale['2'];
+				$twitterLang = substr($locale['2'], 0, 2);
+			}
+
+			// Check the full language code based on the sites's locale
+			elseif (in_array(substr($locale['2'], 0, 2), substr($tweetFull, 0, 2)))
+			{
+				$twitterLang = substr($locale['2'], 0, 2);
 			}
 
 			// Not in array, default to English
