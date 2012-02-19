@@ -56,4 +56,4 @@ if ($displayTwitter): ?>
 </div>
 <div class="clear">&nbsp;</div>
 
-<?php echo $article->text; ?>
+<?php echo $article->text;
