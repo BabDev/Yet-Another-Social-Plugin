@@ -255,11 +255,11 @@ class PlgContentYetAnotherSocial extends JPlugin
 	private function _getGoogleLanguage($artLang, $langCode)
 	{
 		$GlanguageShort = array(
-						'ar', 'bg', 'ca', 'hr', 'cs', 'da', 'nl', 'et', 'fil', 'fi',
-						'fr', 'de', 'el', 'iw', 'hi', 'hu', 'id', 'it', 'ja', 'ko',
-						'lv', 'lt', 'ms', 'no', 'fa', 'pl', 'ro', 'ru', 'sr', 'sk',
-						'sl', 'es', 'sv', 'th', 'tr', 'uk', 'vi');
-		$GlanguageLong	= array('zh-CN', 'zh-TW', 'en-GB', 'en-US', 'pt-BR', 'pt-PT', 'es-419');
+						'af', 'am', 'ar', 'eu', 'bn', 'bg', 'ca', 'hr', 'cs', 'da', 'nl', 'et', 'fil', 'fi',
+						'fr', 'gl', 'de', 'el', 'gu', 'iw', 'hi', 'hu', 'is', 'id', 'it', 'ja', 'kn', 'ko',
+						'lv', 'lt', 'ms', 'ml', 'mr', 'no', 'fa', 'pl', 'ro', 'ru', 'sr', 'sk', 'sl', 'es',
+						'sw', 'sv', 'ta', 'te', 'th', 'tr', 'uk', 'ur', 'vi', 'zu');
+		$GlanguageLong	= array('zh-HK', 'zh-CN', 'zh-TW', 'en-GB', 'en-US', 'fr-CA', 'pt-BR', 'pt-PT', 'es-419');
 
 		// Check if the article's language is *; use site language if so
 		if ($artLang != '*')
