@@ -50,7 +50,7 @@ if ($displayTwitter): ?>
 			data-via="<?php echo $this->params->get('twitterUser', ''); ?>"
 			data-lang="<?php echo $twitterLang?>"
 			data-related="<?php echo $this->params->get('twitterRelated', ''); ?>"
-			data-text="<?php echo $this->params->get('twitterText', ''); ?>">Tweet</a>
+			data-text="<?php echo $tweetText; ?>">Tweet</a>
 	</div>
 <?php endif; ?>
 </div>

@@ -183,6 +183,17 @@ class PlgContentYetAnotherSocial extends JPlugin
 		{
 			$article->text = $article->introtext;
 		}
+
+		// Set the tweet text for the Twitter button
+		if (strlen($this->params->get('twitterText', '')) >= 3)
+		{
+			$tweetText = $this->params->get('twitterText', '');
+		}
+		else
+		{
+			$tweetText = $article->title;
+		}
+
 		ob_start();
 		$template = $this->_getTemplatePath($position . '.php');
 		include $template;
