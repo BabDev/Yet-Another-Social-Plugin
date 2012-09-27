@@ -1,12 +1,12 @@
 <?php
 /**
-* Yet Another Social Plugin
-*
-* @package    YetAnotherSocialPlugin
-*
-* @copyright  Copyright (C) 2011-2012 Michael Babker. All rights reserved.
-* @license    GNU/GPL - http://www.gnu.org/copyleft/gpl.html
-*/
+ * Yet Another Social Plugin
+ *
+ * @package    YetAnotherSocialPlugin
+ *
+ * @copyright  Copyright (C) 2011-2012 Michael Babker. All rights reserved.
+ * @license    GNU/GPL - http://www.gnu.org/copyleft/gpl.html
+ */
 
 defined('_JEXEC') or die;
 
@@ -26,7 +26,7 @@ class PlgContentYetAnotherSocial extends JPlugin
 	 * @param   object  &$subject  The object to observe
 	 * @param   array   $config    An array that holds the plugin configuration
 	 *
-	 * @since	1.0
+	 * @since   1.0
 	 */
 	public function __construct(&$subject, $config)
 	{
@@ -49,14 +49,14 @@ class PlgContentYetAnotherSocial extends JPlugin
 	public function onContentPrepare($context, &$article, &$params, $page)
 	{
 		// Set the parameters
-		$document = JFactory::getDocument();
-		$displayFacebook = $this->params->get('displayFacebook', '1');
-		$displayGoogle = $this->params->get('displayGoogle', '1');
-		$displayTwitter = $this->params->get('displayTwitter', '1');
-		$displayLinkedin = $this->params->get('displayLinkedin', '1');
+		$document           = JFactory::getDocument();
+		$displayFacebook    = $this->params->get('displayFacebook', '1');
+		$displayGoogle      = $this->params->get('displayGoogle', '1');
+		$displayTwitter     = $this->params->get('displayTwitter', '1');
+		$displayLinkedin    = $this->params->get('displayLinkedin', '1');
 		$selectedCategories = $this->params->def('displayCategories', '');
-		$position = $this->params->def('displayPosition', 'top');
-		$view = JFactory::getApplication()->input->get('view', '', 'cmd');
+		$position           = $this->params->def('displayPosition', 'top');
+		$view               = JFactory::getApplication()->input->get('view', '', 'cmd');
 
 		// Check if the plugin is enabled
 		if (JPluginHelper::isEnabled('content', 'yetanothersocial') == false)
@@ -390,7 +390,7 @@ class PlgContentYetAnotherSocial extends JPlugin
 				$twitterLang = substr($locale['2'], 0, 2);
 			}
 
-			// Check the full language code based on the sites's locale
+			// Check the full language code based on the site's locale
 			elseif (in_array(substr($locale['2'], 0, 2), substr($tweetFull, 0, 2)))
 			{
 				$twitterLang = substr($locale['2'], 0, 2);
@@ -412,7 +412,7 @@ class PlgContentYetAnotherSocial extends JPlugin
 	 *
 	 * @return  object  The full content object
 	 *
-	 * @since	1.0
+	 * @since   1.0
 	 */
 	private function _loadArticle($article)
 	{
