@@ -64,6 +64,12 @@ class PlgContentYetAnotherSocial extends JPlugin
 			return;
 		}
 
+		// Check whether we're displaying the plugin in the current view
+		if ($this->params->get('view' . ucfirst($view), '1') == '0')
+		{
+			return;
+		}
+
 		// Check that we're actually displaying a button
 		if ($displayFacebook == '0' && $displayGoogle == '0' && $displayTwitter == '0' && $displayLinkedin == '0')
 		{

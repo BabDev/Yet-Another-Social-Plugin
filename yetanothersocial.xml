@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension version="1.7" type="plugin" group="content" method="upgrade">
+<extension version="2.5" type="plugin" group="content" method="upgrade">
 	<name>plg_content_yetanothersocial</name>
 	<creationDate>##DATE##</creationDate>
 	<author>Michael Babker</author>
@@ -16,6 +16,7 @@
 				<field
 					name="displayFacebook"
 					type="radio"
+					class="btn-group"
 					default="1"
 					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_FACEBOOK_LABEL"
 					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_FACEBOOK_DESCRIPTION" >
@@ -27,6 +28,7 @@
 				<field
 					name="displayGoogle"
 					type="radio"
+					class="btn-group"
 					default="1"
 					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_GOOGLE_LABEL"
 					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_GOOGLE_DESCRIPTION" >
@@ -38,6 +40,7 @@
 				<field
 					name="displayTwitter"
 					type="radio"
+					class="btn-group"
 					default="1"
 					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_TWITTER_LABEL"
 					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_TWITTER_DESCRIPTION" >
@@ -49,6 +52,7 @@
 				<field
 					name="displayLinkedin"
 					type="radio"
+					class="btn-group"
 					default="1"
 					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_LINKEDIN_LABEL"
 					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_LINKEDIN_DESCRIPTION" >
@@ -68,6 +72,7 @@
 				<field
 					name="displayPosition"
 					type="radio"
+					class="btn-group"
 					default="bottom"
 					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_POSITION_LABEL"
 					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_POSITION_DESCRIPTION" >
@@ -79,6 +84,7 @@
 				<field
 					name="horAlign"
 					type="radio"
+					class="btn-group"
 					default="right"
 					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_HOR_ALIGN_LABEL"
 					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_HOR_ALIGN_DESCRIPTION" >
@@ -87,11 +93,60 @@
 					<option
 						value="right">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_HOR_ALIGN_OPTION_RIGHT</option>
 				</field>
+				<field
+					name="viewArchive"
+					type="radio"
+					class="btn-group"
+					default="1"
+					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_VIEW_ARCHIVE_LABEL"
+					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_VIEW_ARCHIVE_DESCRIPTION" >
+					<option
+						value="0">JNO</option>
+					<option
+						value="1">JYES</option>
+				</field>
+				<field
+					name="viewArticle"
+					type="radio"
+					class="btn-group"
+					default="1"
+					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_VIEW_ARTICLE_LABEL"
+					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_VIEW_ARTICLE_DESCRIPTION" >
+					<option
+						value="0">JNO</option>
+					<option
+						value="1">JYES</option>
+				</field>
+				<field
+					name="viewCategory"
+					type="radio"
+					class="btn-group"
+					default="1"
+					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_VIEW_CATEGORY_LABEL"
+					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_VIEW_CATEGORY_DESCRIPTION" >
+					<option
+						value="0">JNO</option>
+					<option
+						value="1">JYES</option>
+				</field>
+				<field
+					name="viewFeatured"
+					type="radio"
+					class="btn-group"
+					default="1"
+					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_VIEW_FEATURED_LABEL"
+					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_VIEW_FEATURED_DESCRIPTION" >
+					<option
+						value="0">JNO</option>
+					<option
+						value="1">JYES</option>
+				</field>
 			</fieldset>
 			<fieldset name="facebook">
 				<field
 					name="facebookSend"
 					type="radio"
+					class="btn-group"
 					default="true"
 					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_SEND_LABEL"
 					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_SEND_DESCRIPTION" >
@@ -116,6 +171,7 @@
 				<field
 					name="facebookFaces"
 					type="radio"
+					class="btn-group"
 					default="true"
 					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_FACES_LABEL"
 					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_FACES_DESCRIPTION" >
@@ -127,6 +183,7 @@
 				<field
 					name="facebookAction"
 					type="radio"
+					class="btn-group"
 					default="like"
 					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_ACTION_LABEL"
 					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_ACTION_DESCRIPTION" >
@@ -157,6 +214,7 @@
 				<field
 					name="facebookColor"
 					type="radio"
+					class="btn-group"
 					default="light"
 					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_COLOR_LABEL"
 					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_COLOR_DESCRIPTION" >
@@ -170,6 +228,7 @@
 				<field
 					name="googleCount"
 					type="radio"
+					class="btn-group"
 					default="true"
 					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_GOOGLE_COUNT_LABEL"
 					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_GOOGLE_COUNT_DESCRIPTION" >
