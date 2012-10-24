@@ -9,6 +9,8 @@
 */
 
 defined('_JEXEC') or die;
+
+/* @var $this PlgContentYetAnotherSocial */
 ?>
 
 <div class="yetanothersocial-container">

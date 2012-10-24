@@ -166,7 +166,8 @@ class PlgContentYetAnotherSocial extends JPlugin
 		}
 
 		// Google +1
-		if ($displayGoogle && !in_array('<script type="text/javascript" src="https://apis.google.com/js/plusone.js">' . $Glang . '</script>', $document->_custom))
+		if ($displayGoogle
+			&& !in_array('<script type="text/javascript" src="https://apis.google.com/js/plusone.js">' . $Glang . '</script>', $document->_custom))
 		{
 			$document->addCustomTag('<script type="text/javascript" src="https://apis.google.com/js/plusone.js">' . $Glang . '</script>');
 		}
