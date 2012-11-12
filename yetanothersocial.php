@@ -58,6 +58,12 @@ class PlgContentYetAnotherSocial extends JPlugin
 		$position           = $this->params->def('displayPosition', 'top');
 		$view               = JFactory::getApplication()->input->get('view', '', 'cmd');
 
+		// Check if the document is of the HTML type
+		if ($document->getType() != 'html')
+		{
+			return;
+		}
+
 		// Check if the plugin is enabled
 		if (JPluginHelper::isEnabled('content', 'yetanothersocial') == false)
 		{
