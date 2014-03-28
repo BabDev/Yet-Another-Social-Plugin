@@ -1,19 +1,9 @@
 /**
-* Yet Another Social Plugin
-*
-* @package    YetAnotherSocialPlugin
-*
-* @copyright  Copyright (C) 2011-2012 Michael Babker. All rights reserved.
-* @license    GNU/GPL - http://www.gnu.org/copyleft/gpl.html
-*/
-
-.left-align {
-	float: left;
-}
-
-.right-align {
-	float: right;
-}
+ * Yet Another Social Plugin
+ *
+ * @copyright  Copyright (C) 2011-2014 Michael Babker. All rights reserved.
+ * @license    http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License Version 2 or Later
+ */
 
 .yetanothersocial-container div {
 	min-width: 100px;

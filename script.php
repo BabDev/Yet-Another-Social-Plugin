@@ -1,41 +1,36 @@
 <?php
 /**
-* Yet Another Social Plugin
-*
-* @package    YetAnotherSocialPlugin
-*
-* @copyright  Copyright (C) 2011-2012 Michael Babker. All rights reserved.
-* @license    GNU/GPL - http://www.gnu.org/copyleft/gpl.html
-*/
+ * Yet Another Social Plugin
+ *
+ * @copyright  Copyright (C) 2011-2014 Michael Babker. All rights reserved.
+ * @license    http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License Version 2 or Later
+ */
 
 /**
  * Installation class to perform additional changes during install/uninstall/update
  *
- * @package  YetAnotherSocialPlugin
- * @since    1.0
+ * @since  1.0
  */
-class PlgContentYetAnotherSocialInstallerScript
+class plgContentYetAnotherSocialInstallerScript
 {
 	/**
 	 * Function to act prior to installation process begins
 	 *
-	 * @param   string  $type    The action being performed
-	 * @param   string  $parent  The function calling this method
+	 * @param   string                   $type    The action being performed
+	 * @param   JInstallerAdapterPlugin  $parent  The function calling this method
 	 *
-	 * @return  boolean  True on success
+	 * @return  mixed
 	 *
 	 * @since   1.0
 	 */
 	public function preflight($type, $parent)
 	{
-		// Requires Joomla! 2.5 or newer
-		$jversion = new JVersion;
-		if (version_compare($jversion->getShortVersion(), '2.5', 'lt'))
+		// Requires Joomla! 3.2 or newer
+		if (version_compare(JVERSION, '3.2', 'lt'))
 		{
 			JError::raiseWarning(null, JText::_('PLG_CONTENT_YETANOTHERSOCIAL_ERROR_VERSION'));
+
 			return false;
 		}
-
-		return true;
 	}
 }

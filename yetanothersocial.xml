@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension version="2.5" type="plugin" group="content" method="upgrade">
+<extension version="3.2" type="plugin" group="content" method="upgrade">
 	<name>plg_content_yetanothersocial</name>
 	<creationDate>##DATE##</creationDate>
 	<author>Michael Babker</author>
-	<copyright>(C) 2011-2012 Michael Babker</copyright>
+	<copyright>(C) 2011-2014 Michael Babker</copyright>
 	<authorEmail>mbabker@flbab.com</authorEmail>
 	<authorUrl>http://www.babdev.com</authorUrl>
 	<version>##VERSION##</version>
 	<license>GNU/GPL Version 2 or later</license>
 	<description>PLG_CONTENT_YETANOTHERSOCIAL_XML_DESCRIPTION</description>
 	<scriptfile>script.php</scriptfile>
+	<media destination="yetanothersocial" folder="media">
+		<folder>css</folder>
+		<filename>index.html</filename>
+	</media>
 	<config>
 		<fields name="params">
 			<fieldset name="display">
@@ -144,18 +148,6 @@
 			</fieldset>
 			<fieldset name="facebook">
 				<field
-					name="facebookSend"
-					type="radio"
-					class="btn-group"
-					default="true"
-					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_SEND_LABEL"
-					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_SEND_DESCRIPTION" >
-					<option
-						value="false">JNO</option>
-					<option
-						value="true">JYES</option>
-				</field>
-				<field
 					name="facebookLayout"
 					type="list"
 					default="button_count"
@@ -193,36 +185,10 @@
 						value="recommend">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_ACTION_OPTION_RECOMMEND</option>
 				</field>
 				<field
-					name="facebookFont"
-					type="list"
-					default="arial"
-					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_FONT_LABEL"
-					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_FONT_DESCRIPTION" >
-					<option
-						value="arial">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_FONT_OPTION_ARIAL</option>
-					<option
-						value="lucida grande">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_FONT_OPTION_LUCIDA_GRANDE</option>
-					<option
-						value="segoe ui">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_FONT_OPTION_SEGOE_UI</option>
-					<option
-						value="tahoma">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_FONT_OPTION_TAHOMA</option>
-					<option
-						value="trebuchet ms">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_FONT_OPTION_TREBUCHET_MS</option>
-					<option
-						value="verdana">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_FONT_OPTION_VERDANA</option>
-				</field>
-				<field
-					name="facebookColor"
-					type="radio"
-					class="btn-group"
-					default="light"
-					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_COLOR_LABEL"
-					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_COLOR_DESCRIPTION" >
-					<option
-						value="light">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_ACTION_COLOR_LIGHT</option>
-					<option
-						value="dark">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_ACTION_COLOR_DARK</option>
-				</field>
+					name="facebookAppId"
+					type="text"
+					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_APPID_LABEL"
+					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_APPID_DESCRIPTION" />
 			</fieldset>
 			<fieldset name="google">
 				<field

@@ -4,7 +4,7 @@
 	<property file="./build.properties" />
 	<property name="repo.dir" value="." />
 	<resolvepath propertyName="repo.dir.resolved" file="${repo.dir}" />
-	<property name="version" value="1.1.0" />
+	<property name="version" value="2.0.0.alpha" />
 	<tstamp>
 		<format property="build.date" pattern="%Y-%m-%d" />
 	</tstamp>
@@ -12,7 +12,7 @@
 	<target
 		name="dev_head"
 		description="Builds test packages based on the development head"
-		depends="phpcs,rebuild-packages,build-temp"
+		depends="rebuild-packages,build-temp"
 	>
 		<delete quiet="yes" includeemptydirs="true">
 			<fileset dir=".">

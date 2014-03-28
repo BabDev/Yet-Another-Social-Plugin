@@ -2,10 +2,8 @@
 /**
  * Yet Another Social Plugin
  *
- * @package    YetAnotherSocialPlugin
- *
- * @copyright  Copyright (C) 2011-2012 Michael Babker. All rights reserved.
- * @license    GNU/GPL - http://www.gnu.org/copyleft/gpl.html
+ * @copyright  Copyright (C) 2011-2014 Michael Babker. All rights reserved.
+ * @license    http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License Version 2 or Later
  */
 
 defined('_JEXEC') or die;
@@ -15,24 +13,33 @@ require_once JPATH_SITE . '/components/com_content/helpers/route.php';
 /**
  * Yet Another Social Plugin Content Plugin
  *
- * @package  YetAnotherSocialPlugin
- * @since    1.0
+ * @since  1.0
  */
 class PlgContentYetAnotherSocial extends JPlugin
 {
 	/**
-	 * Constructor
+	 * Application object
 	 *
-	 * @param   object  &$subject  The object to observe
-	 * @param   array   $config    An array that holds the plugin configuration
-	 *
-	 * @since   1.0
+	 * @var    JApplicationCms
+	 * @since  2.0
 	 */
-	public function __construct(&$subject, $config)
-	{
-		parent::__construct($subject, $config);
-		$this->loadLanguage();
-	}
+	protected $app;
+
+	/**
+	 * Database object
+	 *
+	 * @var    JDatabaseDriver
+	 * @since  2.0
+	 */
+	protected $db;
+
+	/**
+	 * Affects constructor behavior. If true, language files will be loaded automatically.
+	 *
+	 * @var    boolean
+	 * @since  2.0
+	 */
+	protected $autoloadLanguage = true;
 
 	/**
 	 * Plugin to add the social buttons
@@ -56,16 +63,16 @@ class PlgContentYetAnotherSocial extends JPlugin
 		$displayLinkedin    = $this->params->get('displayLinkedin', '1');
 		$selectedCategories = $this->params->def('displayCategories', '');
 		$position           = $this->params->def('displayPosition', 'top');
-		$view               = JFactory::getApplication()->input->get('view', '', 'cmd');
+		$view               = $this->app->input->get('view', '', 'cmd');
 
-		// Check if the document is of the HTML type
-		if ($document->getType() != 'html')
+		// Check if the plugin is enabled
+		if (JPluginHelper::isEnabled('content', 'yetanothersocial') == false)
 		{
 			return;
 		}
 
-		// Check if the plugin is enabled
-		if (JPluginHelper::isEnabled('content', 'yetanothersocial') == false)
+		// Make sure the document is an HTML document
+		if ($document->getType() != 'html')
 		{
 			return;
 		}
@@ -85,19 +92,28 @@ class PlgContentYetAnotherSocial extends JPlugin
 		// If we're not in the article view, we have to get the full $article object ourselves
 		if ($view == 'featured' || $view == 'category')
 		{
-			// We only want to handle com_content items; if this function returns null, there's no DB item
-			// Also, make sure the object isn't already loaded and undo previous plugin processing
-			if ((!is_null($this->_loadArticle($article))) && (!isset($article->catid)))
+			/*
+			 * We only want to handle com_content items; if this function returns null, there's no DB item
+			 * Also, make sure the object isn't already loaded and undo previous plugin processing
+			 */
+			if ((!is_null($this->loadArticle($article))) && (!isset($article->catid)))
 			{
-				$article = $this->_loadArticle($article);
+				$article = $this->loadArticle($article);
 			}
 		}
 
 		// Make sure we have a category ID, otherwise, end processing
 		$properties = get_object_vars($article);
-		if (!(array_key_exists('catid', $properties)))
+
+		if (!array_key_exists('catid', $properties))
 		{
 			return;
+		}
+
+		// Make sure the article language is set
+		if (!isset($article->language))
+		{
+			$article->language = $this->loadArticleLanguage($article->id);
 		}
 
 		// Get the current category
@@ -132,6 +148,7 @@ class PlgContentYetAnotherSocial extends JPlugin
 			{
 				$article->text = $article->introtext;
 			}
+
 			return;
 		}
 
@@ -139,49 +156,43 @@ class PlgContentYetAnotherSocial extends JPlugin
 		$article->slug = $article->alias ? ($article->id . ':' . $article->alias) : $article->id;
 
 		// Build the URL for the plugins to use
-		$siteURL = substr(JURI::root(), 0, -1);
+		$siteURL = substr(JUri::root(), 0, -1);
 		$itemURL = JRoute::_(ContentHelperRoute::getArticleRoute($article->slug, $article->catid));
 
 		// Declare the stylesheet
-		$css = $this->_getCssPath('default.css');
-		JHtml::stylesheet($css, false, false, false);
+		JHtml::_('stylesheet', 'yetanothersocial/default.css', array(), true);
 
 		// Get the article's language
 		$artLang = $article->language;
 
 		// Get the site language
-		$lang = JFactory::getLanguage();
-		$locale = $lang->getLocale();
+		$lang     = JFactory::getLanguage();
+		$locale   = $lang->getLocale();
 		$langCode = $lang->getTag();
 
 		// Facebook Language
-		$FBlanguage = $this->_getFBLanguage($artLang, $locale);
+		$FBlanguage = $this->getFacebookLanguage($artLang, $locale);
 
 		// Google+ Language
-		$Glang = $this->_getGoogleLanguage($artLang, $langCode);
+		$Glang = $this->getGoogleLanguage($artLang, $langCode);
 
 		// Twitter Language
-		$twitterLang = $this->_getTwitterLanguage($artLang, $locale);
+		$twitterLang = $this->getTwitterLanguage($artLang, $locale);
 
-		// Check that the scripts aren't already loaded and load if needed
-
-		// Facebook
-		if ($displayFacebook && !in_array('<script src="http://connect.facebook.net/' . $FBlanguage . '/all.js#xfbml=1"></script>', $document->_custom))
-		{
-			$document->addCustomTag('<script src="http://connect.facebook.net/' . $FBlanguage . '/all.js#xfbml=1"></script>');
-		}
+		/*
+		 * Check that the scripts aren't already loaded and load if needed
+		 */
 
 		// Google +1
-		if ($displayGoogle
-			&& !in_array('<script type="text/javascript" src="https://apis.google.com/js/plusone.js">' . $Glang . '</script>', $document->_custom))
+		if ($displayGoogle && !in_array('<script type="text/javascript" src="https://apis.google.com/js/plusone.js">' . $Glang . '</script>', $document->_custom))
 		{
 			$document->addCustomTag('<script type="text/javascript" src="https://apis.google.com/js/plusone.js">' . $Glang . '</script>');
 		}
 
 		// Twitter Tweet
-		if ($displayTwitter && !in_array('<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>', $document->_custom))
+		if ($displayTwitter && !in_array('<script type="text/javascript" src="http://platform.twitter.com/widgets.js" async></script>', $document->_custom))
 		{
-			$document->addCustomTag('<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>');
+			$document->addCustomTag('<script type="text/javascript" src="http://platform.twitter.com/widgets.js" async></script>');
 		}
 
 		// LinkedIn Share
@@ -190,8 +201,7 @@ class PlgContentYetAnotherSocial extends JPlugin
 			$document->addCustomTag('<script src="http://platform.linkedin.com/in.js" type="text/javascript"></script>');
 		}
 
-		// Get the content and merge in the template
-		// First, see if $article->text is defined
+		// Get the content and merge in the template; first see if $article->text is defined
 		if (!isset($article->text))
 		{
 			$article->text = $article->introtext;
@@ -208,37 +218,14 @@ class PlgContentYetAnotherSocial extends JPlugin
 		}
 
 		ob_start();
-		$template = $this->_getTemplatePath($position . '.php');
+		$template = JPluginHelper::getLayoutPath('content', 'yetanothersocial', $position);
 		include $template;
-		$output = ob_get_contents();
-		ob_end_clean();
+		$output = ob_get_clean();
 
 		// Final output
 		$article->text = $output;
-		return;
-	}
 
-	/**
-	 * Function to determine the CSS file path
-	 *
-	 * @param   string  $file  The file name of the CSS file
-	 *
-	 * @return  string  The path to the CSS file
-	 *
-	 * @since   1.0
-	 */
-	private function _getCssPath($file)
-	{
-		$app = JFactory::getApplication();
-		if (file_exists(JPATH_SITE . '/templates/' . $app->getTemplate() . '/html/yetanothersocial/' . $file))
-		{
-			$path = 'templates/' . $app->getTemplate() . '/html/yetanothersocial/' . $file;
-		}
-		else
-		{
-			$path = 'plugins/content/yetanothersocial/media/css/' . $file;
-		}
-		return $path;
+		return;
 	}
 
 	/**
@@ -251,19 +238,18 @@ class PlgContentYetAnotherSocial extends JPlugin
 	 *
 	 * @since   1.1
 	 */
-	private function _getFBLanguage($artLang, $locale)
+	private function getFacebookLanguage($artLang, $locale)
 	{
 		if ($artLang != '*')
 		{
 			// Using article language
-			$FBlanguage = substr($artLang, 0, 2);
+			return str_replace('-', '_', $artLang);
 		}
 		else
 		{
 			// Using site language
-			$FBlanguage = $locale['2'];
+			return $locale['2'];
 		}
-		return $FBlanguage;
 	}
 
 	/**
@@ -276,13 +262,14 @@ class PlgContentYetAnotherSocial extends JPlugin
 	 *
 	 * @since   1.1
 	 */
-	private function _getGoogleLanguage($artLang, $langCode)
+	private function getGoogleLanguage($artLang, $langCode)
 	{
 		$GlanguageShort = array(
 						'af', 'am', 'ar', 'eu', 'bn', 'bg', 'ca', 'hr', 'cs', 'da', 'nl', 'et', 'fil', 'fi',
 						'fr', 'gl', 'de', 'el', 'gu', 'iw', 'hi', 'hu', 'is', 'id', 'it', 'ja', 'kn', 'ko',
 						'lv', 'lt', 'ms', 'ml', 'mr', 'no', 'fa', 'pl', 'ro', 'ru', 'sr', 'sk', 'sl', 'es',
-						'sw', 'sv', 'ta', 'te', 'th', 'tr', 'uk', 'ur', 'vi', 'zu');
+						'sw', 'sv', 'ta', 'te', 'th', 'tr', 'uk', 'ur', 'vi', 'zu'
+		);
 		$GlanguageLong	= array('zh-HK', 'zh-CN', 'zh-TW', 'en-GB', 'en-US', 'fr-CA', 'pt-BR', 'pt-PT', 'es-419');
 
 		// Check if the article's language is *; use site language if so
@@ -291,19 +278,17 @@ class PlgContentYetAnotherSocial extends JPlugin
 			// Check the short language code based on the article's language
 			if (in_array(substr($artLang, 0, 2), $GlanguageShort))
 			{
-				$Glang = 'window.___gcfg = {lang: "' . substr($artLang, 0, 2) . '"};';
+				return 'window.___gcfg = {lang: "' . substr($artLang, 0, 2) . '"};';
 			}
-
 			// Check the long language code based on the article's language
 			elseif (in_array($artLang, $GlanguageLong))
 			{
-				$Glang = 'window.___gcfg = {lang: "' . $artLang . '"};';
+				return 'window.___gcfg = {lang: "' . $artLang . '"};';
 			}
-
 			// None of the above are matched, define no language
 			else
 			{
-				$Glang = '';
+				return '';
 			}
 		}
 		else
@@ -311,45 +296,19 @@ class PlgContentYetAnotherSocial extends JPlugin
 			// Check the short language code based on the site's language
 			if (in_array(substr($langCode, 0, 2), $GlanguageShort))
 			{
-				$Glang = 'window.___gcfg = {lang: "' . substr($langCode, 0, 2) . '"};';
+				return 'window.___gcfg = {lang: "' . substr($langCode, 0, 2) . '"};';
 			}
-
 			// Check the long language code based on the site's language
 			elseif (in_array($langCode, $GlanguageLong))
 			{
-				$Glang = 'window.___gcfg = {lang: "' . $langCode . '"};';
+				return 'window.___gcfg = {lang: "' . $langCode . '"};';
 			}
-
 			// None of the above are matched, define no language
 			else
 			{
-				$Glang = '';
+				return '';
 			}
 		}
-		return $Glang;
-	}
-
-	/**
-	 * Function to determine the template file path
-	 *
-	 * @param   string  $file  The file name of the template
-	 *
-	 * @return  string  The paths to the template
-	 *
-	 * @since   1.0
-	 */
-	private function _getTemplatePath($file)
-	{
-		$app = JFactory::getApplication();
-		if (file_exists(JPATH_SITE . '/templates/' . $app->getTemplate() . '/html/yetanothersocial/' . $file))
-		{
-			$path = JPATH_SITE . '/templates/' . $app->getTemplate() . '/html/yetanothersocial/' . $file;
-		}
-		else
-		{
-			$path = JPATH_SITE . '/plugins/content/yetanothersocial/tmpl/' . $file;
-		}
-		return $path;
 	}
 
 	/**
@@ -362,7 +321,7 @@ class PlgContentYetAnotherSocial extends JPlugin
 	 *
 	 * @since   1.1
 	 */
-	private function _getTwitterLanguage($artLang, $locale)
+	private function getTwitterLanguage($artLang, $locale)
 	{
 		// Authorized languages
 		$tweetShort = array('pt', 'id', 'it', 'es', 'tr', 'en', 'ko', 'fr', 'nl', 'ru', 'de', 'ja', 'hi', 'pl', 'no', 'da', 'fi', 'sv', 'fil', 'msa');
@@ -374,25 +333,22 @@ class PlgContentYetAnotherSocial extends JPlugin
 			// Check the short language code based on the article's language
 			if (in_array(substr($artLang, 0, 2), $tweetShort))
 			{
-				$twitterLang = substr($artLang, 0, 2);
+				return substr($artLang, 0, 2);
 			}
-
 			// Check the long language code based on the article's language
 			elseif (in_array(substr($artLang, 0, 3), $tweetShort))
 			{
-				$twitterLang = substr($artLang, 0, 3);
+				return substr($artLang, 0, 3);
 			}
-
 			// Check the full language code based on the article's language
 			elseif (in_array($artLang, $tweetFull))
 			{
-				$twitterLang = $artLang;
+				return $artLang;
 			}
-
 			// Not in array, default to English
 			else
 			{
-				$twitterLang = 'en';
+				return 'en';
 			}
 		}
 		else
@@ -400,22 +356,19 @@ class PlgContentYetAnotherSocial extends JPlugin
 			// Check the language code based on the site's locale
 			if (in_array(substr($locale['2'], 0, 2), $tweetShort))
 			{
-				$twitterLang = substr($locale['2'], 0, 2);
+				return substr($locale['2'], 0, 2);
 			}
-
 			// Check the full language code based on the site's locale
 			elseif (in_array(substr($locale['2'], 0, 2), substr($tweetFull, 0, 2)))
 			{
-				$twitterLang = substr($locale['2'], 0, 2);
+				return substr($locale['2'], 0, 2);
 			}
-
 			// Not in array, default to English
 			else
 			{
-				$twitterLang = 'en';
+				return 'en';
 			}
 		}
-		return $twitterLang;
 	}
 
 	/**
@@ -427,17 +380,36 @@ class PlgContentYetAnotherSocial extends JPlugin
 	 *
 	 * @since   1.0
 	 */
-	private function _loadArticle($article)
+	private function loadArticle($article)
 	{
 		// Query the database for the article text
-		$db = JFactory::getDBO();
-		$query = $db->getQuery(true);
-		$query->select('*');
-		$query->from($db->quoteName('#__content'));
-		$query->where($db->quoteName('introtext') . ' = ' . $db->quote($article->text));
-		$db->setQuery($query);
-		$article = $db->loadObject();
+		$query = $this->db->getQuery(true)
+			->select('*')
+			->from($this->db->quoteName('#__content'))
+			->where($this->db->quoteName('introtext') . ' = ' . $this->db->quote($article->text));
+		$this->db->setQuery($query);
 
-		return $article;
+		return $this->db->loadObject();
+	}
+
+	/**
+	 * Function to retrieve the article language
+	 *
+	 * @param   string  $id  Article ID
+	 *
+	 * @return  string  Article language
+	 *
+	 * @since   2.0
+	 */
+	private function loadArticleLanguage($id)
+	{
+		// Query the database for the article text
+		$query = $this->db->getQuery(true)
+			->select('language')
+			->from($this->db->quoteName('#__content'))
+			->where($this->db->quoteName('id') . ' = ' . (int) $id);
+		$this->db->setQuery($query);
+
+		return $this->db->loadResult();
 	}
 }
