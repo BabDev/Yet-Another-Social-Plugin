@@ -55,7 +55,7 @@ if ($displayLinkedin): ?>
 <?php // Twitter Share button
 if ($displayTwitter): ?>
 	<div class="yetanothersocial-twitter pull-<?php echo $this->params->get('horAlign', 'left'); ?>">
-		<a href="http://twitter.com/share" class="twitter-share-button"
+		<a href="https://twitter.com/share" class="twitter-share-button"
 			data-url="<?php echo $siteURL . $itemURL; ?>"
 			data-counturl="<?php echo $siteURL . $itemURL; ?>"
 			data-count="<?php echo $this->params->get('twitterCount', 'horizontal'); ?>"

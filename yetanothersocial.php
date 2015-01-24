@@ -190,15 +190,15 @@ class PlgContentYetAnotherSocial extends JPlugin
 		}
 
 		// Twitter Tweet
-		if ($displayTwitter && !in_array('<script type="text/javascript" src="http://platform.twitter.com/widgets.js" async></script>', $document->_custom))
+		if ($displayTwitter && !in_array('<script type="text/javascript" src="https://platform.twitter.com/widgets.js" async></script>', $document->_custom))
 		{
-			$document->addCustomTag('<script type="text/javascript" src="http://platform.twitter.com/widgets.js" async></script>');
+			$document->addCustomTag('<script type="text/javascript" src="https://platform.twitter.com/widgets.js" async></script>');
 		}
 
 		// LinkedIn Share
-		if ($displayLinkedin && !in_array('<script src="http://platform.linkedin.com/in.js" type="text/javascript"></script>', $document->_custom))
+		if ($displayLinkedin && !in_array('<script src="https://platform.linkedin.com/in.js" type="text/javascript"></script>', $document->_custom))
 		{
-			$document->addCustomTag('<script src="http://platform.linkedin.com/in.js" type="text/javascript"></script>');
+			$document->addCustomTag('<script src="https://platform.linkedin.com/in.js" type="text/javascript"></script>');
 		}
 
 		// Get the content and merge in the template; first see if $article->text is defined
