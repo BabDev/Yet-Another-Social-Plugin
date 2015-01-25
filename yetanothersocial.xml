@@ -5,7 +5,7 @@
 	<author>Michael Babker</author>
 	<copyright>(C) 2011-2014 Michael Babker</copyright>
 	<authorEmail>mbabker@flbab.com</authorEmail>
-	<authorUrl>http://www.babdev.com</authorUrl>
+	<authorUrl>https://www.babdev.com</authorUrl>
 	<version>##VERSION##</version>
 	<license>GNU/GPL Version 2 or later</license>
 	<description>PLG_CONTENT_YETANOTHERSOCIAL_XML_DESCRIPTION</description>
@@ -274,6 +274,6 @@
 		<filename>index.html</filename>
 	</files>
 	<updateservers>
-		<server type="extension" name="Yet Another Social Plugin Updates" priority="2">http://www.babdev.com/updates/YAS.xml</server>
+		<server type="extension" name="Yet Another Social Plugin Updates" priority="2">https://www.babdev.com/updates/YAS.xml</server>
 	</updateservers>
 </extension>

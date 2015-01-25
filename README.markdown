@@ -12,7 +12,7 @@ Requirements
 
 Support
 ===============
-* Documentation for *Yet Another Social Plugin* is available on my website at http://www.babdev.com/extensions/yet-another-social-plugin.
+* Documentation for *Yet Another Social Plugin* is available on my website at https://www.babdev.com/extensions/yet-another-social-plugin.
 * If you've found a bug, please report it to the Issue Tracker at https://github.com/mbabker/Yet-Another-Social-Plugin/issues.
 
 Installation Package
