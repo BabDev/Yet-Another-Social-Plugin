@@ -92,11 +92,7 @@
 
 	<target name="rebuild-packages" description="Delete old packages">
 		<echo message="Deleting packages dir" />
-		<delete quiet="yes" includeemptydirs="true">
-			<fileset dir="*">
-				<include name="packages" />
-			</fileset>
-		</delete>
+		<delete dir="${repo.dir}/packages" includeemptydirs="true" failonerror="true" />
 		<echo message="Creating packages dir" />
 		<mkdir dir="packages" />
 	</target>
