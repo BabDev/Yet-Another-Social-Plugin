@@ -1,51 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="yetanothersocial" default="dev_head" basedir=".">
 	<!-- Project properties -->
-	<property file="./build.properties" />
 	<property name="repo.dir" value="." />
-	<resolvepath propertyName="repo.dir.resolved" file="${repo.dir}" />
 	<property name="version" value="2.0.0.alpha" />
 	<tstamp>
-		<format property="build.date" pattern="%Y-%m-%d" />
+		<format property="build.date" pattern="yyyy-MM-dd" />
 	</tstamp>
 
-	<target
-		name="dev_head"
-		description="Builds test packages based on the development head"
-		depends="rebuild-packages,build-temp"
-	>
-		<delete quiet="yes" includeemptydirs="true">
+	<macrodef name="git">
+		<attribute name="command" />
+		<attribute name="dir" default="" />
+		<element name="args" optional="true" />
+		<sequential>
+			<exec executable="git" dir="@{dir}">
+				<arg value="@{command}" />
+				<args/>
+			</exec>
+		</sequential>
+	</macrodef>
+
+	<!-- Build a package for testing -->
+	<target name="dev_head" description="Builds test packages based on the development head" depends="rebuild-packages,build-temp">
+		<echo message="Deleting old master build" />
+		<delete includeemptydirs="true">
 			<fileset dir=".">
-				<include name="releases/plg_content_yetanothersocial_master.zip" />
+				<include name="plg_content_yetanothersocial_master.zip" />
 			</fileset>
 		</delete>
-		<echo msg="Build package" />
-		<zip destfile="releases/plg_content_yetanothersocial_master.zip">
+		<echo message="Build package" />
+		<zip destfile="plg_content_yetanothersocial_master.zip">
 			<fileset dir="packages">
 				<include name="**" />
 			</fileset>
 		</zip>
 	</target>
-	<target
-		name="release"
-		description="Builds a release package"
-		depends="rebuild-packages,build-temp" >
-		<echo msg="Build package" />
+
+	<!-- Build a package for release -->
+	<target name="release" description="Builds a release package" depends="rebuild-packages,build-temp">
+		<echo message="Build package" />
 		<zip destfile="releases/plg_content_yetanothersocial_${version}.zip">
 			<fileset dir="packages">
 				<include name="**" />
 			</fileset>
 		</zip>
-		<echo msg="Creating Git tag" />
-		<gittag repository="${repo.dir.resolved}" name="${version}" gitPath="${localgit}" />
-		<echo msg="Pushing Version commit and tag to GitHub" />
-		<gitpush repository="${repo.dir.resolved}" gitPath="${localgit}" />
-		<gitpush repository="${repo.dir.resolved}" tags="true" gitPath="${localgit}" />
+		<echo message="Committing version" />
+		<git command="commit">
+			<args>
+				<arg value="-am 'Prepare ${version} release'" />
+			</args>
+		</git>
+		<echo message="Creating Git tag" />
+		<git command="tag">
+			<args>
+				<arg value="${version}" />
+			</args>
+		</git>
+		<echo message="Pushing Version commit and tag to GitHub" />
+		<git command="push">
+		</git>
+		<git command="push">
+			<args>
+				<arg value="--tags" />
+			</args>
+		</git>
 	</target>
+
+	<!-- Copy files to staging to allow for manipulation pre-package -->
 	<target name="build-temp" description="Stages the files" depends="rebuild-packages">
-		<echo msg="Create temp folder" />
+		<echo message="Create temp folder" />
 		<mkdir dir="packages" />
-		<echo msg="Copy files" />
+		<echo message="Copy files" />
 		<copy todir="packages/language">
 			<fileset dir="language" />
 		</copy>
@@ -57,48 +81,43 @@
 		</copy>
 		<copy todir="packages">
 			<fileset dir=".">
-				<include name="CHANGELOG" />
-				<include name="index.html" />
 				<include name="script.php" />
 				<include name="yetanothersocial.php" />
 				<include name="yetanothersocial.xml" />
 			</fileset>
-			<filterchain>
-				<replacetokens begintoken="##" endtoken="##">
-					<token key="DATE" value="${build.date}" />
-					<token key="VERSION" value="${version}" />
-				</replacetokens>
-			</filterchain>
 	    </copy>
+		<replace file="packages/yetanothersocial.xml" token="##DATE##" value="${build.date}" />
+		<replace file="packages/yetanothersocial.xml" token="##VERSION##" value="${version}" />
 	</target>
+
 	<target name="rebuild-packages" description="Delete old packages">
-		<echo msg="Deleting packages dir" />
+		<echo message="Deleting packages dir" />
 		<delete quiet="yes" includeemptydirs="true">
 			<fileset dir="*">
 				<include name="packages" />
 			</fileset>
 		</delete>
-		<echo msg="Creating packages dir" />
+		<echo message="Creating packages dir" />
 		<mkdir dir="packages" />
 	</target>
+
+	<!-- Check code style based on Joomla Coding Standard -->
 	<target name="phpcs" description="Generate codestyle report using PHP_CodeSniffer">
-		<echo msg="Remove previous codestyle report" />
+		<echo message="Remove previous codestyle report" />
 		<delete quiet="yes" includeemptydirs="true">
 			<fileset dir=".">
-				<include name="build/codesniff.txt" />
-				<include name="build/checkstyle.xml" />
+				<include name="build/logs/checkstyle.xml" />
 			</fileset>
 		</delete>
-		<echo msg="Running phpcs with Joomla! Platform standards" />
-		<phpcodesniffer
-			standard="${platform.dir}/build/phpcs/Joomla"
-			format="full"
-			ignorePatterns="packages,releases,tmpl"
-			file="${repo.dir}"
-			allowedFileExtensions="php"
-			verbosity="1">
-			<formatter type="full" outfile="${repo.dir}/build/codesniff.txt" />
-			<formatter type="checkstyle" outfile="${repo.dir}/build/checkstyle.xml" />
-		</phpcodesniffer>
+		<echo message="Running phpcs with Joomla! Coding Standard" />
+		<exec executable="phpcs">
+			<arg value="--report=checkstyle" />
+			<arg value="--extensions=php" />
+			<arg value="-p" />
+			<arg value="--report-file=${repo.dir}/build/logs/checkstyle.xml" />
+			<arg value="--standard=${repo.dir}/build/phpcs/Joomla" />
+			<arg value="--ignore=${repo.dir}/packages,${repo.dir}/releases,${repo.dir}/tmpl" />
+			<arg path="${repo.dir}" />
+		</exec>
 	</target>
 </project>
