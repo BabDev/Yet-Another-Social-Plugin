@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension version="3.2" type="plugin" group="content" method="upgrade">
+<extension version="3.4" type="plugin" group="content" method="upgrade">
 	<name>plg_content_yetanothersocial</name>
 	<creationDate>##DATE##</creationDate>
 	<author>Michael Babker</author>
-	<copyright>(C) 2011-2014 Michael Babker</copyright>
+	<copyright>(C) 2011-2015 Michael Babker</copyright>
 	<authorEmail>mbabker@flbab.com</authorEmail>
 	<authorUrl>https://www.babdev.com</authorUrl>
 	<version>##VERSION##</version>
@@ -12,256 +12,95 @@
 	<scriptfile>script.php</scriptfile>
 	<media destination="yetanothersocial" folder="media">
 		<folder>css</folder>
-		<filename>index.html</filename>
 	</media>
 	<config>
 		<fields name="params">
 			<fieldset name="display">
-				<field
-					name="displayFacebook"
-					type="radio"
-					class="btn-group"
-					default="1"
-					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_FACEBOOK_LABEL"
-					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_FACEBOOK_DESCRIPTION" >
-					<option
-						value="0">JNO</option>
-					<option
-						value="1">JYES</option>
+				<field name="displayFacebook" type="radio" class="btn-group btn-group-yesno" default="1" label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_FACEBOOK_LABEL" description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_FACEBOOK_DESCRIPTION">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
 				</field>
-				<field
-					name="displayGoogle"
-					type="radio"
-					class="btn-group"
-					default="1"
-					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_GOOGLE_LABEL"
-					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_GOOGLE_DESCRIPTION" >
-					<option
-						value="0">JNO</option>
-					<option
-						value="1">JYES</option>
+				<field name="displayGoogle" type="radio" class="btn-group btn-group-yesno" default="1" label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_GOOGLE_LABEL" description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_GOOGLE_DESCRIPTION">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
 				</field>
-				<field
-					name="displayTwitter"
-					type="radio"
-					class="btn-group"
-					default="1"
-					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_TWITTER_LABEL"
-					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_TWITTER_DESCRIPTION" >
-					<option
-						value="0">JNO</option>
-					<option
-						value="1">JYES</option>
+				<field name="displayTwitter" type="radio" class="btn-group btn-group-yesno" default="1" label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_TWITTER_LABEL" description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_TWITTER_DESCRIPTION">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
 				</field>
-				<field
-					name="displayLinkedin"
-					type="radio"
-					class="btn-group"
-					default="1"
-					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_LINKEDIN_LABEL"
-					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_LINKEDIN_DESCRIPTION" >
-					<option
-						value="0">JNO</option>
-					<option
-						value="1">JYES</option>
+				<field name="displayLinkedin" type="radio" class="btn-group" default="1" label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_LINKEDIN_LABEL" description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_LINKEDIN_DESCRIPTION">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
 				</field>
-				<field
-					name="displayCategories"
-					type="category"
-					extension="com_content"
-					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_CATEGORIES_LABEL"
-					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_CATEGORIES_DESCRIPTION"
-					multiple="true"
-					size="10" />
-				<field
-					name="displayPosition"
-					type="radio"
-					class="btn-group"
-					default="bottom"
-					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_POSITION_LABEL"
-					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_POSITION_DESCRIPTION" >
-					<option
-						value="top">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_POSITION_OPTION_TOP</option>
-					<option
-						value="bottom">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_POSITION_OPTION_BOTTOM</option>
+				<field name="displayCategories" type="category" extension="com_content" label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_CATEGORIES_LABEL" description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_CATEGORIES_DESCRIPTION" multiple="true" size="10"/>
+				<field name="displayPosition" type="radio" class="btn-group" default="bottom" label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_POSITION_LABEL" description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_POSITION_DESCRIPTION">
+					<option value="top">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_POSITION_OPTION_TOP</option>
+					<option value="bottom">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_DISPLAY_POSITION_OPTION_BOTTOM</option>
 				</field>
-				<field
-					name="horAlign"
-					type="radio"
-					class="btn-group"
-					default="right"
-					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_HOR_ALIGN_LABEL"
-					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_HOR_ALIGN_DESCRIPTION" >
-					<option
-						value="left">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_HOR_ALIGN_OPTION_LEFT</option>
-					<option
-						value="right">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_HOR_ALIGN_OPTION_RIGHT</option>
+				<field name="horAlign" type="radio" class="btn-group" default="right" label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_HOR_ALIGN_LABEL" description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_HOR_ALIGN_DESCRIPTION">
+					<option value="left">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_HOR_ALIGN_OPTION_LEFT</option>
+					<option value="right">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_HOR_ALIGN_OPTION_RIGHT</option>
 				</field>
-				<field
-					name="viewArchive"
-					type="radio"
-					class="btn-group"
-					default="1"
-					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_VIEW_ARCHIVE_LABEL"
-					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_VIEW_ARCHIVE_DESCRIPTION" >
-					<option
-						value="0">JNO</option>
-					<option
-						value="1">JYES</option>
+				<field name="viewArchive" type="radio" class="btn-group btn-group-yesno" default="1" label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_VIEW_ARCHIVE_LABEL" description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_VIEW_ARCHIVE_DESCRIPTION">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
 				</field>
-				<field
-					name="viewArticle"
-					type="radio"
-					class="btn-group"
-					default="1"
-					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_VIEW_ARTICLE_LABEL"
-					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_VIEW_ARTICLE_DESCRIPTION" >
-					<option
-						value="0">JNO</option>
-					<option
-						value="1">JYES</option>
+				<field name="viewArticle" type="radio" class="btn-group btn-group-yesno" default="1" label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_VIEW_ARTICLE_LABEL" description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_VIEW_ARTICLE_DESCRIPTION">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
 				</field>
-				<field
-					name="viewCategory"
-					type="radio"
-					class="btn-group"
-					default="1"
-					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_VIEW_CATEGORY_LABEL"
-					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_VIEW_CATEGORY_DESCRIPTION" >
-					<option
-						value="0">JNO</option>
-					<option
-						value="1">JYES</option>
+				<field name="viewCategory" type="radio" class="btn-group btn-group-yesno" default="1" label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_VIEW_CATEGORY_LABEL" description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_VIEW_CATEGORY_DESCRIPTION">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
 				</field>
-				<field
-					name="viewFeatured"
-					type="radio"
-					class="btn-group"
-					default="1"
-					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_VIEW_FEATURED_LABEL"
-					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_VIEW_FEATURED_DESCRIPTION" >
-					<option
-						value="0">JNO</option>
-					<option
-						value="1">JYES</option>
+				<field name="viewFeatured" type="radio" class="btn-group btn-group-yesno" default="1" label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_VIEW_FEATURED_LABEL" description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_VIEW_FEATURED_DESCRIPTION">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
 				</field>
 			</fieldset>
 			<fieldset name="facebook">
-				<field
-					name="facebookLayout"
-					type="list"
-					default="button_count"
-					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_LAYOUT_LABEL"
-					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_LAYOUT_DESCRIPTION" >
-					<option
-						value="standard">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_LAYOUT_OPTION_STANDARD</option>
-					<option
-						value="button_count">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_LAYOUT_OPTION_BUTTON</option>
-					<option
-						value="box_count">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_LAYOUT_OPTION_BOX</option>
+				<field name="facebookLayout" type="list" default="button_count" label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_LAYOUT_LABEL" description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_LAYOUT_DESCRIPTION">
+					<option value="standard">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_LAYOUT_OPTION_STANDARD</option>
+					<option value="button_count">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_LAYOUT_OPTION_BUTTON</option>
+					<option value="box_count">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_LAYOUT_OPTION_BOX</option>
 				</field>
-				<field
-					name="facebookFaces"
-					type="radio"
-					class="btn-group"
-					default="true"
-					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_FACES_LABEL"
-					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_FACES_DESCRIPTION" >
-					<option
-						value="false">JNO</option>
-					<option
-						value="true">JYES</option>
+				<field name="facebookFaces" type="radio" class="btn-group btn-group-yesno" default="true" label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_FACES_LABEL" description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_FACES_DESCRIPTION">
+					<option value="false">JNO</option>
+					<option value="true">JYES</option>
 				</field>
-				<field
-					name="facebookAction"
-					type="radio"
-					class="btn-group"
-					default="like"
-					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_ACTION_LABEL"
-					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_ACTION_DESCRIPTION" >
-					<option
-						value="like">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_ACTION_OPTION_LIKE</option>
-					<option
-						value="recommend">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_ACTION_OPTION_RECOMMEND</option>
+				<field name="facebookAction" type="radio" class="btn-group" default="like" label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_ACTION_LABEL" description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_ACTION_DESCRIPTION">
+					<option value="like">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_ACTION_OPTION_LIKE</option>
+					<option value="recommend">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_ACTION_OPTION_RECOMMEND</option>
 				</field>
-				<field
-					name="facebookAppId"
-					type="text"
-					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_APPID_LABEL"
-					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_APPID_DESCRIPTION" />
+				<field name="facebookAppId" type="text" label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_APPID_LABEL" description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_FACEBOOK_APPID_DESCRIPTION"/>
 			</fieldset>
 			<fieldset name="google">
-				<field
-					name="googleCount"
-					type="radio"
-					class="btn-group"
-					default="true"
-					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_GOOGLE_COUNT_LABEL"
-					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_GOOGLE_COUNT_DESCRIPTION" >
-					<option
-						value="false">JNO</option>
-					<option
-						value="true">JYES</option>
+				<field name="googleCount" type="radio" class="btn-group btn-group-yesno" default="true" label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_GOOGLE_COUNT_LABEL" description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_GOOGLE_COUNT_DESCRIPTION">
+					<option value="false">JNO</option>
+					<option value="true">JYES</option>
 				</field>
-				<field
-					name="googleSize"
-					type="list"
-					default="medium"
-					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_GOOGLE_SIZE_LABEL"
-					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_GOOGLE_SIZE_DESCRIPTION" >
-					<option
-						value="standard">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_GOOGLE_SIZE_OPTION_STANDARD</option>
-					<option
-						value="small">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_GOOGLE_SIZE_OPTION_SMALL</option>
-					<option
-						value="medium">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_GOOGLE_SIZE_OPTION_MEDIUM</option>
-					<option
-						value="tall">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_GOOGLE_SIZE_OPTION_TALL</option>
+				<field name="googleSize" type="list" default="medium" label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_GOOGLE_SIZE_LABEL" description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_GOOGLE_SIZE_DESCRIPTION">
+					<option value="standard">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_GOOGLE_SIZE_OPTION_STANDARD</option>
+					<option value="small">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_GOOGLE_SIZE_OPTION_SMALL</option>
+					<option value="medium">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_GOOGLE_SIZE_OPTION_MEDIUM</option>
+					<option value="tall">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_GOOGLE_SIZE_OPTION_TALL</option>
 				</field>
 			</fieldset>
 			<fieldset name="twitter">
-				<field
-					name="twitterCount"
-					type="list"
-					default="horizontal"
-					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_TWITTER_COUNT_LABEL"
-					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_TWITTER_COUNT_DESCRIPTION" >
-					<option
-						value="none">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_TWITTER_COUNT_OPTION_NONE</option>
-					<option
-						value="horizontal">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_TWITTER_COUNT_OPTION_HORIZONTAL</option>
-					<option
-						value="vertical">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_TWITTER_COUNT_OPTION_VERTICAL</option>
+				<field name="twitterCount" type="list" default="horizontal" label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_TWITTER_COUNT_LABEL" description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_TWITTER_COUNT_DESCRIPTION">
+					<option value="none">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_TWITTER_COUNT_OPTION_NONE</option>
+					<option value="horizontal">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_TWITTER_COUNT_OPTION_HORIZONTAL</option>
+					<option value="vertical">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_TWITTER_COUNT_OPTION_VERTICAL</option>
 				</field>
-				<field
-					name="twitterUser"
-					type="text"
-					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_TWITTER_USER_LABEL"
-					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_TWITTER_USER_DESCRIPTION" />
-				<field
-					name="twitterRelated"
-					type="text"
-					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_TWITTER_RELATED_LABEL"
-					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_TWITTER_RELATED_DESCRIPTION" />
-				<field
-					name="twitterText"
-					type="text"
-					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_TWITTER_TEXT_LABEL"
-					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_TWITTER_TEXT_DESCRIPTION" />
+				<field name="twitterUser" type="text" label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_TWITTER_USER_LABEL" description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_TWITTER_USER_DESCRIPTION"/>
+				<field name="twitterRelated" type="text" label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_TWITTER_RELATED_LABEL" description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_TWITTER_RELATED_DESCRIPTION"/>
+				<field name="twitterText" type="text" label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_TWITTER_TEXT_LABEL" description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_TWITTER_TEXT_DESCRIPTION"/>
 			</fieldset>
 			<fieldset name="linkedin">
-			<field
-					name="linkedinCount"
-					type="list"
-					default="right"
-					label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_LINKEDIN_COUNT_LABEL"
-					description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_LINKEDIN_COUNT_DESCRIPTION" >
-					<option
-						value="none">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_LINKEDIN_COUNT_OPTION_NONE</option>
-					<option
-						value="right">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_LINKEDIN_COUNT_OPTION_HORIZONTAL</option>
-					<option
-						value="top">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_LINKEDIN_COUNT_OPTION_VERTICAL</option>
+				<field name="linkedinCount" type="list" default="right" label="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_LINKEDIN_COUNT_LABEL" description="PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_LINKEDIN_COUNT_DESCRIPTION">
+					<option value="none">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_LINKEDIN_COUNT_OPTION_NONE</option>
+					<option value="right">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_LINKEDIN_COUNT_OPTION_HORIZONTAL</option>
+					<option value="top">PLG_CONTENT_YETANOTHERSOCIAL_FIELDSET_LINKEDIN_COUNT_OPTION_VERTICAL</option>
 				</field>
 			</fieldset>
 		</fields>
@@ -271,7 +110,6 @@
 		<folder>media</folder>
 		<folder>tmpl</folder>
 		<filename plugin="yetanothersocial">yetanothersocial.php</filename>
-		<filename>index.html</filename>
 	</files>
 	<updateservers>
 		<server type="extension" name="Yet Another Social Plugin Updates" priority="2">https://www.babdev.com/updates/YAS.xml</server>

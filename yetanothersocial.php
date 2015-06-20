@@ -133,11 +133,11 @@ class PlgContentYetAnotherSocial extends JPlugin
 		}
 		elseif ($selectedCategories == '')
 		{
-			$categories[] = $currentCategory;
+			$categories = [$currentCategory];
 		}
 		else
 		{
-			$categories[] = $selectedCategories;
+			$categories = [$selectedCategories];
 		}
 
 		// If we aren't in a defined category, exit
@@ -245,11 +245,9 @@ class PlgContentYetAnotherSocial extends JPlugin
 			// Using article language
 			return str_replace('-', '_', $artLang);
 		}
-		else
-		{
-			// Using site language
-			return $locale['2'];
-		}
+
+		// Using site language
+		return $locale['2'];
 	}
 
 	/**
@@ -264,13 +262,12 @@ class PlgContentYetAnotherSocial extends JPlugin
 	 */
 	private function getGoogleLanguage($artLang, $langCode)
 	{
-		$GlanguageShort = array(
-						'af', 'am', 'ar', 'eu', 'bn', 'bg', 'ca', 'hr', 'cs', 'da', 'nl', 'et', 'fil', 'fi',
-						'fr', 'gl', 'de', 'el', 'gu', 'iw', 'hi', 'hu', 'is', 'id', 'it', 'ja', 'kn', 'ko',
-						'lv', 'lt', 'ms', 'ml', 'mr', 'no', 'fa', 'pl', 'ro', 'ru', 'sr', 'sk', 'sl', 'es',
-						'sw', 'sv', 'ta', 'te', 'th', 'tr', 'uk', 'ur', 'vi', 'zu'
-		);
-		$GlanguageLong	= array('zh-HK', 'zh-CN', 'zh-TW', 'en-GB', 'en-US', 'fr-CA', 'pt-BR', 'pt-PT', 'es-419');
+		$GlanguageShort = [
+			'af', 'am', 'ar', 'eu', 'bn', 'bg', 'ca', 'hr', 'cs', 'da', 'nl', 'et', 'fil', 'fi', 'fr', 'gl', 'de', 'el', 'gu', 'iw', 'hi', 'hu', 'is',
+			'id', 'it', 'ja', 'kn', 'ko', 'lv', 'lt', 'ms', 'ml', 'mr', 'no', 'fa', 'pl', 'ro', 'ru', 'sr', 'sk', 'sl', 'es', 'sw', 'sv', 'ta', 'te',
+			'th', 'tr', 'uk', 'ur', 'vi', 'zu'
+		];
+		$GlanguageLong	= ['zh-HK', 'zh-CN', 'zh-TW', 'en-GB', 'en-US', 'fr-CA', 'pt-BR', 'pt-PT', 'es-419'];
 
 		// Check if the article's language is *; use site language if so
 		if ($artLang != '*')
@@ -280,35 +277,31 @@ class PlgContentYetAnotherSocial extends JPlugin
 			{
 				return 'window.___gcfg = {lang: "' . substr($artLang, 0, 2) . '"};';
 			}
+
 			// Check the long language code based on the article's language
-			elseif (in_array($artLang, $GlanguageLong))
+			if (in_array($artLang, $GlanguageLong))
 			{
 				return 'window.___gcfg = {lang: "' . $artLang . '"};';
 			}
+
 			// None of the above are matched, define no language
-			else
-			{
-				return '';
-			}
+			return '';
 		}
-		else
+
+		// Check the short language code based on the site's language
+		if (in_array(substr($langCode, 0, 2), $GlanguageShort))
 		{
-			// Check the short language code based on the site's language
-			if (in_array(substr($langCode, 0, 2), $GlanguageShort))
-			{
-				return 'window.___gcfg = {lang: "' . substr($langCode, 0, 2) . '"};';
-			}
-			// Check the long language code based on the site's language
-			elseif (in_array($langCode, $GlanguageLong))
-			{
-				return 'window.___gcfg = {lang: "' . $langCode . '"};';
-			}
-			// None of the above are matched, define no language
-			else
-			{
-				return '';
-			}
+			return 'window.___gcfg = {lang: "' . substr($langCode, 0, 2) . '"};';
 		}
+
+		// Check the long language code based on the site's language
+		if (in_array($langCode, $GlanguageLong))
+		{
+			return 'window.___gcfg = {lang: "' . $langCode . '"};';
+		}
+
+		// None of the above are matched, define no language
+		return '';
 	}
 
 	/**
@@ -324,8 +317,8 @@ class PlgContentYetAnotherSocial extends JPlugin
 	private function getTwitterLanguage($artLang, $locale)
 	{
 		// Authorized languages
-		$tweetShort = array('pt', 'id', 'it', 'es', 'tr', 'en', 'ko', 'fr', 'nl', 'ru', 'de', 'ja', 'hi', 'pl', 'no', 'da', 'fi', 'sv', 'fil', 'msa');
-		$tweetFull = array('zh-cn', 'zh-tw');
+		$tweetShort = ['pt', 'id', 'it', 'es', 'tr', 'en', 'ko', 'fr', 'nl', 'ru', 'de', 'ja', 'hi', 'pl', 'no', 'da', 'fi', 'sv', 'fil', 'msa'];
+		$tweetFull = ['zh-cn', 'zh-tw'];
 
 		// Check if the article's language is *; use site language if so
 		if ($artLang != '*')
@@ -335,40 +328,37 @@ class PlgContentYetAnotherSocial extends JPlugin
 			{
 				return substr($artLang, 0, 2);
 			}
+
 			// Check the long language code based on the article's language
-			elseif (in_array(substr($artLang, 0, 3), $tweetShort))
+			if (in_array(substr($artLang, 0, 3), $tweetShort))
 			{
 				return substr($artLang, 0, 3);
 			}
+
 			// Check the full language code based on the article's language
-			elseif (in_array($artLang, $tweetFull))
+			if (in_array($artLang, $tweetFull))
 			{
 				return $artLang;
 			}
+
 			// Not in array, default to English
-			else
-			{
-				return 'en';
-			}
+			return 'en';
 		}
-		else
+
+		// Check the language code based on the site's locale
+		if (in_array(substr($locale['2'], 0, 2), $tweetShort))
 		{
-			// Check the language code based on the site's locale
-			if (in_array(substr($locale['2'], 0, 2), $tweetShort))
-			{
-				return substr($locale['2'], 0, 2);
-			}
-			// Check the full language code based on the site's locale
-			elseif (in_array(substr($locale['2'], 0, 2), substr($tweetFull, 0, 2)))
-			{
-				return substr($locale['2'], 0, 2);
-			}
-			// Not in array, default to English
-			else
-			{
-				return 'en';
-			}
+			return substr($locale['2'], 0, 2);
 		}
+
+		// Check the full language code based on the site's locale
+		if (in_array(substr($locale['2'], 0, 2), substr($tweetFull, 0, 2)))
+		{
+			return substr($locale['2'], 0, 2);
+		}
+
+		// Not in array, default to English
+		return 'en';
 	}
 
 	/**
